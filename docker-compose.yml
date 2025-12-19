@@ -1,0 +1,10 @@
+services:
+  tasks-db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: tasks-db
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5432:5432"
+    restart: always
