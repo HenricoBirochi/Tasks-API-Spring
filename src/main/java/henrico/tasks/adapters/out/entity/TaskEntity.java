@@ -13,7 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "tasks")
+@Table(name = "task")
 public class TaskEntity {
 
     @Id
@@ -27,9 +27,17 @@ public class TaskEntity {
     private String description;
 
     @Column(nullable = false)
-    private LocalDateTime deadline;
+    private Integer coins;
 
     @Column(nullable = false)
+    private LocalDateTime deadline;
+
+    @Column(name = "task_status", nullable = false)
+    @Enumerated(EnumType.STRING)
     private TaskStatus taskStatus;
+
+    @ManyToOne
+    @JoinColumn(name = "task_group_id", nullable = false)
+    private TaskGroupEntity taskGroupEntity;
 
 }
