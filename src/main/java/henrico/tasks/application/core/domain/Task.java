@@ -9,15 +9,19 @@ public class Task {
     private UUID id;
     private String title;
     private String description;
+    private Integer coins;
     private LocalDateTime deadline;
     private TaskStatus taskStatus;
+    private TaskGroup taskGroup;
 
-    public Task(UUID id, String title, String description, LocalDateTime deadline, TaskStatus taskStatus) {
+    public Task(UUID id, String title, String description, Integer coins, LocalDateTime deadline, TaskStatus taskStatus, TaskGroup taskGroup) {
         this.id = id;
         this.title = title;
         this.description = description;
+        this.coins = coins;
         this.deadline = deadline;
         this.taskStatus = taskStatus;
+        this.taskGroup = taskGroup;
     }
 
     public UUID getId() {
@@ -44,6 +48,14 @@ public class Task {
         this.description = description;
     }
 
+    public Integer getCoins() {
+        return coins;
+    }
+
+    public void setCoins(Integer coins) {
+        this.coins = coins;
+    }
+
     public LocalDateTime getDeadline() {
         return deadline;
     }
@@ -58,5 +70,13 @@ public class Task {
 
     public void setTaskStatus(TaskStatus taskStatus) {
         this.taskStatus = taskStatus;
+    }
+
+    public TaskGroup getTaskGroup() {
+        return taskGroup;
+    }
+
+    public void setTaskGroup(TaskGroup taskGroup) {
+        this.taskGroup = taskGroup;
     }
 }
