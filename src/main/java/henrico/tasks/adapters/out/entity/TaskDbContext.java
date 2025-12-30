@@ -14,7 +14,7 @@ import java.util.UUID;
 @Builder
 @Entity
 @Table(name = "task")
-public class TaskEntity {
+public class TaskDbContext {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -38,6 +38,6 @@ public class TaskEntity {
 
     @ManyToOne
     @JoinColumn(name = "task_group_id", nullable = false)
-    private TaskGroupEntity taskGroupEntity;
+    private TaskGroupDbContext taskGroupDbContext;
 
 }

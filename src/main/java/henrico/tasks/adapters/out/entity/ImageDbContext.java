@@ -12,20 +12,20 @@ import java.util.UUID;
 @Builder
 @Entity
 @Table(name = "image")
-public class ImageEntity {
+public class ImageDbContext {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(nullable = false)
     private UUID id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "image_name")
     private String imageName;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "image_path")
     private String imagePath;
 
     @OneToOne(fetch = FetchType.LAZY)
-    private UserEntity user;
+    private UserDbContext user;
 
 }

@@ -13,7 +13,7 @@ import java.util.UUID;
 @Builder
 @Entity
 @Table(name = "task_group")
-public class TaskGroupEntity {
+public class TaskGroupDbContext {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -22,10 +22,6 @@ public class TaskGroupEntity {
 
     @Column(nullable = false)
     private String name;
-
-    @ManyToOne
-    @JoinColumn(name = "task_group_category_id", nullable = false)
-    private TaskGroupCategoryEntity taskGroupCategoryEntity;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)

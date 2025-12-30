@@ -14,7 +14,7 @@ import java.util.UUID;
 @Builder
 @Entity
 @Table(name = "user")
-public class UserEntity {
+public class UserDbContext {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -32,10 +32,10 @@ public class UserEntity {
     private UserRole userRole;
 
     @OneToOne
-    @JoinColumn(name = "image_id")
-    private ImageEntity imageEntity;
+    @JoinColumn(name = "image_id", nullable = false)
+    private ImageDbContext image;
 
     @OneToMany(fetch = FetchType.LAZY)
-    private List<TaskGroupEntity> taskGroupEntities;
+    private List<TaskGroupDbContext> taskGroupDbContext;
 
 }

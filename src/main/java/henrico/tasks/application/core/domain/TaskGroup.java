@@ -6,14 +6,12 @@ import java.util.UUID;
 public class TaskGroup {
     private UUID id;
     private String name;
-    private TaskGroupCategory taskGroupCategory;
     private List<Task> tasks;
     private User user;
 
-    public TaskGroup(UUID id, String name, TaskGroupCategory taskGroupCategory, List<Task> tasks, User user) {
+    public TaskGroup(UUID id, String name, List<Task> tasks, User user) {
         this.id = id;
         this.name = name;
-        this.taskGroupCategory = taskGroupCategory;
         this.tasks = tasks;
         this.user = user;
     }
@@ -32,14 +30,6 @@ public class TaskGroup {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public TaskGroupCategory getTaskGroupCategory() {
-        return taskGroupCategory;
-    }
-
-    public void setTaskGroupCategory(TaskGroupCategory taskGroupCategory) {
-        this.taskGroupCategory = taskGroupCategory;
     }
 
     public List<Task> getTasks() {
