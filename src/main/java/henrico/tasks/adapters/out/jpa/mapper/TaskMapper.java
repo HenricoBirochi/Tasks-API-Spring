@@ -1,34 +1,34 @@
 package henrico.tasks.adapters.out.jpa.mapper;
 
-import henrico.tasks.adapters.out.jpa.persistence.entity.TaskDbContext;
+import henrico.tasks.adapters.out.jpa.entity.TaskEntity;
 import henrico.tasks.application.core.domain.Task;
 
 public class TaskMapper {
-    public static Task toTaskShallow(TaskDbContext taskDbContext) {
+    public static Task toTaskShallow(TaskEntity taskEntity) {
         return new Task(
-                taskDbContext.getId(),
-                taskDbContext.getTitle(),
-                taskDbContext.getDescription(),
-                taskDbContext.getCoins(),
-                taskDbContext.getDeadline(),
-                taskDbContext.getTaskStatus()
+                taskEntity.getId(),
+                taskEntity.getTitle(),
+                taskEntity.getDescription(),
+                taskEntity.getCoins(),
+                taskEntity.getDeadline(),
+                taskEntity.getTaskStatus()
         );
     }
 
-    public static Task toTaskDeep(TaskDbContext taskDbContext) {
+    public static Task toTaskDeep(TaskEntity taskEntity) {
         return new Task(
-                taskDbContext.getId(),
-                taskDbContext.getTitle(),
-                taskDbContext.getDescription(),
-                taskDbContext.getCoins(),
-                taskDbContext.getDeadline(),
-                taskDbContext.getTaskStatus(),
-                TaskGroupMapper.toTaskGroup(taskDbContext.getTaskGroupDbContext())
+                taskEntity.getId(),
+                taskEntity.getTitle(),
+                taskEntity.getDescription(),
+                taskEntity.getCoins(),
+                taskEntity.getDeadline(),
+                taskEntity.getTaskStatus(),
+                TaskGroupMapper.toTaskGroup(taskEntity.getTaskGroupEntity())
         );
     }
 
-    public static TaskDbContext toTaskDbContext(Task task) {
-        return TaskDbContext
+    public static TaskEntity toTaskDbContext(Task task) {
+        return TaskEntity
                 .builder()
                 .id(task.getId())
                 .title(task.getTitle())

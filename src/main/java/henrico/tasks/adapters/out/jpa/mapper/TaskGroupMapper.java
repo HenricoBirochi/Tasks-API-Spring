@@ -1,24 +1,24 @@
 package henrico.tasks.adapters.out.jpa.mapper;
 
-import henrico.tasks.adapters.out.jpa.persistence.entity.TaskGroupDbContext;
+import henrico.tasks.adapters.out.jpa.entity.TaskGroupEntity;
 import henrico.tasks.application.core.domain.TaskGroup;
 
 public class TaskGroupMapper {
-    public static TaskGroup toTaskGroup(TaskGroupDbContext taskGroupDbContext) {
+    public static TaskGroup toTaskGroup(TaskGroupEntity taskGroupEntity) {
         return new TaskGroup(
-                taskGroupDbContext.getId(),
-                taskGroupDbContext.getName(),
-                taskGroupDbContext
+                taskGroupEntity.getId(),
+                taskGroupEntity.getName(),
+                taskGroupEntity
                         .getTasks()
                         .stream()
                         .map(taskDbContext -> TaskMapper.toTaskShallow(taskDbContext))
                         .toList(),
-                UserMapper.toUserShallow(taskGroupDbContext.getUser())
+                UserMapper.toUserShallow(taskGroupEntity.getUser())
         );
     }
 
-    public static TaskGroupDbContext toTaskGroupDbContext(TaskGroup taskGroup) {
-        return TaskGroupDbContext
+    public static TaskGroupEntity toTaskGroupDbContext(TaskGroup taskGroup) {
+        return TaskGroupEntity
                 .builder()
                 .id(taskGroup.getId())
                 .name(taskGroup.getName())

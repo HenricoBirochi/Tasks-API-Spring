@@ -1,22 +1,22 @@
 package henrico.tasks.adapters.out.jpa.mapper;
 
-import henrico.tasks.adapters.out.jpa.persistence.entity.ImageDbContext;
+import henrico.tasks.adapters.out.jpa.entity.ImageEntity;
 import henrico.tasks.application.core.domain.Image;
 
 public class ImageMapper {
-    public static ImageDbContext toImageDbContext(Image image) {
-        return ImageDbContext
+    public static ImageEntity toImageDbContext(Image image) {
+        return ImageEntity
                 .builder()
                 .id(image.getId())
                 .imageName(image.getImageName())
                 .imagePath(image.getImagePath())
                 .build();
     }
-    public static Image toImage(ImageDbContext imageDbContext) {
+    public static Image toImage(ImageEntity imageEntity) {
         return new Image(
-                imageDbContext.getId(),
-                imageDbContext.getImageName(),
-                imageDbContext.getImagePath()
+                imageEntity.getId(),
+                imageEntity.getImageName(),
+                imageEntity.getImagePath()
         );
     }
 }
