@@ -1,9 +1,12 @@
 package henrico.tasks.adapters.out.entity.repository;
 
-import henrico.tasks.adapters.out.entity.TaskDbContext;
-import org.springframework.data.jpa.repository.JpaRepository;
-
+import java.util.List;
 import java.util.UUID;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import henrico.tasks.adapters.out.entity.TaskDbContext;
+
 public interface JpaTaskRepository extends JpaRepository<TaskDbContext, UUID> {
+    List<TaskDbContext> findByTaskGroupId(UUID taskGroupId);
 }
