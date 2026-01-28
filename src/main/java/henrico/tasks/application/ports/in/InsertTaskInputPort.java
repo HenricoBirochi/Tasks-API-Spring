@@ -1,8 +1,8 @@
-package henrico.tasks.application.ports.out;
+package henrico.tasks.application.ports.in;
 
 import henrico.tasks.application.core.domain.Task;
 
-public interface InsertTaskOutputPort {
+public interface InsertTaskInputPort {
 
     void insertTask(Task task);
 

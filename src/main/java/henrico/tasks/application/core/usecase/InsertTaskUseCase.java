@@ -1,11 +1,11 @@
 package henrico.tasks.application.core.usecase;
 
 import henrico.tasks.application.core.domain.Task;
+import henrico.tasks.application.ports.in.InsertTaskInputPort;
 
-public class InsertTaskUseCase {
+public class InsertTaskUseCase implements InsertTaskInputPort {
 
-    public void insertTask(Task task) {
-
-    }
+    @Override
+    public void insertTask(Task task) {}
 
 }
