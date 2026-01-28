@@ -1,7 +1,7 @@
-package henrico.tasks.application.core.usecase;
+package henrico.tasks.application.core.usecase.task;
 
 import henrico.tasks.application.core.domain.Task;
-import henrico.tasks.application.ports.in.InsertTaskInputPort;
+import henrico.tasks.application.ports.in.task.InsertTaskInputPort;
 
 public class InsertTaskUseCase implements InsertTaskInputPort {
 

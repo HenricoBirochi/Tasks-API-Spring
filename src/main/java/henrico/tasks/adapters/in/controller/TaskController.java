@@ -1,8 +1,8 @@
 package henrico.tasks.adapters.in.controller;
 
 import henrico.tasks.application.core.domain.Task;
-import henrico.tasks.application.ports.in.FindAllTasksFromTaskGroupInputPort;
-import henrico.tasks.application.ports.in.InsertTaskInputPort;
+import henrico.tasks.application.ports.in.task.FindAllTasksFromTaskGroupInputPort;
+import henrico.tasks.application.ports.in.task.InsertTaskInputPort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

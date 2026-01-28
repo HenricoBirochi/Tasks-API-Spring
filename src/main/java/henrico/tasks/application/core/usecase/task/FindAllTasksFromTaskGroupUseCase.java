@@ -1,11 +1,11 @@
-package henrico.tasks.application.core.usecase;
+package henrico.tasks.application.core.usecase.task;
 
 import java.util.List;
 import java.util.UUID;
 
 import henrico.tasks.application.core.domain.Task;
-import henrico.tasks.application.ports.in.FindAllTasksFromTaskGroupInputPort;
-import henrico.tasks.application.ports.out.FindAllTasksFromTaskGroupOutputPort;
+import henrico.tasks.application.ports.in.task.FindAllTasksFromTaskGroupInputPort;
+import henrico.tasks.application.ports.out.task.FindAllTasksFromTaskGroupOutputPort;
 
 public class FindAllTasksFromTaskGroupUseCase implements FindAllTasksFromTaskGroupInputPort {
 

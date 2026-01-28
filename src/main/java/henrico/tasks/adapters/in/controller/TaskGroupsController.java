@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import henrico.tasks.application.core.domain.TaskGroup;
-import henrico.tasks.application.ports.in.FindAllTaskGroupsInputPort;
+import henrico.tasks.application.ports.in.taskgroup.FindAllTaskGroupsInputPort;
 
 @RestController
 @RequestMapping("/task-groups")

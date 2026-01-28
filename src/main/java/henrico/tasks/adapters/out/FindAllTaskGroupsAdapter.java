@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import henrico.tasks.adapters.out.entity.mapper.TaskGroupMapper;
 import henrico.tasks.adapters.out.entity.repository.JpaTaskGroupRepository;
 import henrico.tasks.application.core.domain.TaskGroup;
-import henrico.tasks.application.ports.out.FindAllTaskGroupsOutputPort;
+import henrico.tasks.application.ports.out.taskgroup.FindAllTaskGroupsOutputPort;
 
 @Component
 public class FindAllTaskGroupsAdapter implements FindAllTaskGroupsOutputPort {

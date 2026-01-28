@@ -6,7 +6,7 @@ import java.util.UUID;
 import henrico.tasks.adapters.out.entity.mapper.TaskMapper;
 import henrico.tasks.adapters.out.entity.repository.JpaTaskRepository;
 import henrico.tasks.application.core.domain.Task;
-import henrico.tasks.application.ports.out.FindAllTasksFromTaskGroupOutputPort;
+import henrico.tasks.application.ports.out.task.FindAllTasksFromTaskGroupOutputPort;
 
 public class FindAllTasksFromTaskGroupAdapter implements FindAllTasksFromTaskGroupOutputPort {
 
