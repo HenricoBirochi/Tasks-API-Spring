@@ -36,6 +36,6 @@ public class UserDbContext {
     private ImageDbContext image;
 
     @OneToMany(fetch = FetchType.LAZY)
-    private List<TaskGroupDbContext> taskGroupDbContext;
+    private List<TaskGroupDbContext> taskGroups;
 
 }

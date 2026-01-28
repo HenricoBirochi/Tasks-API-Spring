@@ -23,12 +23,11 @@ public class TaskGroupDbContext {
     @Column(nullable = false)
     private String name;
 
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<TaskDbContext> tasks;
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private UserEntity userEntity;
-
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<TaskEntity> taskEntities;
-
+    private UserDbContext user;
 
 }
