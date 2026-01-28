@@ -1,6 +1,6 @@
-package henrico.tasks.adapters.out.entity.mapper;
+package henrico.tasks.adapters.out.jpa.mapper;
 
-import henrico.tasks.adapters.out.entity.ImageDbContext;
+import henrico.tasks.adapters.out.jpa.persistence.entity.ImageDbContext;
 import henrico.tasks.application.core.domain.Image;
 
 public class ImageMapper {

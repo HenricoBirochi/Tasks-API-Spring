@@ -1,8 +1,8 @@
-package henrico.tasks.adapters.out;
+package henrico.tasks.adapters.out.jpa.taskgroup;
 
-import henrico.tasks.adapters.out.entity.TaskGroupDbContext;
-import henrico.tasks.adapters.out.entity.mapper.TaskGroupMapper;
-import henrico.tasks.adapters.out.entity.repository.JpaTaskGroupRepository;
+import henrico.tasks.adapters.out.jpa.persistence.entity.TaskGroupDbContext;
+import henrico.tasks.adapters.out.jpa.mapper.TaskGroupMapper;
+import henrico.tasks.adapters.out.jpa.persistence.repository.JpaTaskGroupRepository;
 import henrico.tasks.application.core.domain.TaskGroup;
 import henrico.tasks.application.ports.out.taskgroup.InsertTaskGroupOutputPort;
 

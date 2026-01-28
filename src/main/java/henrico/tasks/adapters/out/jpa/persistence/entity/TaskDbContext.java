@@ -1,4 +1,4 @@
-package henrico.tasks.adapters.out.entity;
+package henrico.tasks.adapters.out.jpa.persistence.entity;
 
 import henrico.tasks.application.core.domain.enums.TaskStatus;
 import jakarta.persistence.*;

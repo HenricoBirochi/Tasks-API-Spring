@@ -1,6 +1,6 @@
-package henrico.tasks.adapters.out.entity.mapper;
+package henrico.tasks.adapters.out.jpa.mapper;
 
-import henrico.tasks.adapters.out.entity.UserDbContext;
+import henrico.tasks.adapters.out.jpa.persistence.entity.UserDbContext;
 import henrico.tasks.application.core.domain.User;
 
 public class UserMapper {

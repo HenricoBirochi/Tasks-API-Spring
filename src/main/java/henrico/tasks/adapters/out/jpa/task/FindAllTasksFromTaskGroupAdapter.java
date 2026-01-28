@@ -1,10 +1,10 @@
-package henrico.tasks.adapters.out;
+package henrico.tasks.adapters.out.jpa.task;
 
 import java.util.List;
 import java.util.UUID;
 
-import henrico.tasks.adapters.out.entity.mapper.TaskMapper;
-import henrico.tasks.adapters.out.entity.repository.JpaTaskRepository;
+import henrico.tasks.adapters.out.jpa.mapper.TaskMapper;
+import henrico.tasks.adapters.out.jpa.persistence.repository.JpaTaskRepository;
 import henrico.tasks.application.core.domain.Task;
 import henrico.tasks.application.ports.out.task.FindAllTasksFromTaskGroupOutputPort;
 

@@ -1,8 +1,8 @@
-package henrico.tasks.adapters.out;
+package henrico.tasks.adapters.out.jpa.task;
 
-import henrico.tasks.adapters.out.entity.TaskDbContext;
-import henrico.tasks.adapters.out.entity.mapper.TaskMapper;
-import henrico.tasks.adapters.out.entity.repository.JpaTaskRepository;
+import henrico.tasks.adapters.out.jpa.persistence.entity.TaskDbContext;
+import henrico.tasks.adapters.out.jpa.mapper.TaskMapper;
+import henrico.tasks.adapters.out.jpa.persistence.repository.JpaTaskRepository;
 import henrico.tasks.application.core.domain.Task;
 import henrico.tasks.application.ports.out.task.InsertTaskOutputPort;
 import org.springframework.stereotype.Component;

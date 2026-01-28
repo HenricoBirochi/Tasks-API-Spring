@@ -1,6 +1,6 @@
-package henrico.tasks.adapters.out.entity.repository;
+package henrico.tasks.adapters.out.jpa.persistence.repository;
 
-import henrico.tasks.adapters.out.entity.TaskGroupDbContext;
+import henrico.tasks.adapters.out.jpa.persistence.entity.TaskGroupDbContext;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

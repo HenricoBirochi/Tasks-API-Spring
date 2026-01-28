@@ -1,12 +1,12 @@
-package henrico.tasks.adapters.out;
+package henrico.tasks.adapters.out.jpa.taskgroup;
 
 import java.util.List;
 import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
-import henrico.tasks.adapters.out.entity.mapper.TaskGroupMapper;
-import henrico.tasks.adapters.out.entity.repository.JpaTaskGroupRepository;
+import henrico.tasks.adapters.out.jpa.mapper.TaskGroupMapper;
+import henrico.tasks.adapters.out.jpa.persistence.repository.JpaTaskGroupRepository;
 import henrico.tasks.application.core.domain.TaskGroup;
 import henrico.tasks.application.ports.out.taskgroup.FindAllTaskGroupsOutputPort;
 

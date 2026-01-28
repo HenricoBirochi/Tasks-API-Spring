@@ -1,6 +1,6 @@
-package henrico.tasks.adapters.out.entity.mapper;
+package henrico.tasks.adapters.out.jpa.mapper;
 
-import henrico.tasks.adapters.out.entity.TaskGroupDbContext;
+import henrico.tasks.adapters.out.jpa.persistence.entity.TaskGroupDbContext;
 import henrico.tasks.application.core.domain.TaskGroup;
 
 public class TaskGroupMapper {
