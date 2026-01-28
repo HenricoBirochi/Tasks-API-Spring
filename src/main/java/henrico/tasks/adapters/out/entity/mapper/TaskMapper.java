@@ -1,20 +1,34 @@
 package henrico.tasks.adapters.out.entity.mapper;
 
+import henrico.tasks.adapters.out.entity.TaskDbContext;
 import henrico.tasks.application.core.domain.Task;
-import henrico.tasks.adapters.out.entity.TaskEntity;
 
 public class TaskMapper {
-    public static Task toDomain(TaskEntity taskDb) {
+    public static Task toTaskShallow(TaskDbContext taskDbContext) {
         return new Task(
-                taskDb.getId(),
-                taskDb.getTitle(),
-                taskDb.getDescription(),
-                taskDb.getDeadline(),
-                taskDb.getTaskStatus());
+                taskDbContext.getId(),
+                taskDbContext.getTitle(),
+                taskDbContext.getDescription(),
+                taskDbContext.getCoins(),
+                taskDbContext.getDeadline(),
+                taskDbContext.getTaskStatus()
+        );
     }
 
-    public static TaskEntity toEntity(Task task) {
-        return TaskEntity
+    public static Task toTaskDeep(TaskDbContext taskDbContext) {
+        return new Task(
+                taskDbContext.getId(),
+                taskDbContext.getTitle(),
+                taskDbContext.getDescription(),
+                taskDbContext.getCoins(),
+                taskDbContext.getDeadline(),
+                taskDbContext.getTaskStatus(),
+                TaskGroupMapper.toTaskGroup(taskDbContext.getTaskGroupDbContext())
+        );
+    }
+
+    public static TaskDbContext toTaskDbContext(Task task) {
+        return TaskDbContext
                 .builder()
                 .id(task.getId())
                 .title(task.getTitle())
