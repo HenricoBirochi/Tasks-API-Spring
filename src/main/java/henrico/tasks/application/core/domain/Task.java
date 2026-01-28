@@ -14,6 +14,15 @@ public class Task {
     private TaskStatus taskStatus;
     private TaskGroup taskGroup;
 
+    public Task(UUID id, String title, String description, Integer coins, LocalDateTime deadline, TaskStatus taskStatus) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.coins = coins;
+        this.deadline = deadline;
+        this.taskStatus = taskStatus;
+    }
+
     public Task(UUID id, String title, String description, Integer coins, LocalDateTime deadline, TaskStatus taskStatus, TaskGroup taskGroup) {
         this.id = id;
         this.title = title;

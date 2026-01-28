@@ -13,13 +13,21 @@ public class User {
     private UserRole userRole;
     private List<TaskGroup> taskGroups;
 
-    public User(List<TaskGroup> taskGroups, UserRole userRole, Image image, Integer coins, String name, UUID id) {
-        this.taskGroups = taskGroups;
-        this.userRole = userRole;
-        this.image = image;
-        this.coins = coins;
-        this.name = name;
+    public User(UUID id, String name, Integer coins, Image image, UserRole userRole) {
         this.id = id;
+        this.name = name;
+        this.coins = coins;
+        this.image = image;
+        this.userRole = userRole;
+    }
+
+    public User(UUID id, String name, Integer coins, Image image, UserRole userRole, List<TaskGroup> taskGroups) {
+        this.id = id;
+        this.name = name;
+        this.coins = coins;
+        this.image = image;
+        this.userRole = userRole;
+        this.taskGroups = taskGroups;
     }
 
     public UUID getId() {
