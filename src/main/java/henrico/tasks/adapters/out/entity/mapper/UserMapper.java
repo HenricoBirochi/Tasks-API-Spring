@@ -1,7 +1,6 @@
 package henrico.tasks.adapters.out.entity.mapper;
 
 import henrico.tasks.adapters.out.entity.UserDbContext;
-import henrico.tasks.application.core.domain.Image;
 import henrico.tasks.application.core.domain.User;
 
 public class UserMapper {

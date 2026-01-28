@@ -1,6 +1,7 @@
 package henrico.tasks.adapters.out;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
@@ -19,7 +20,7 @@ public class FindAllTaskGroupsAdapter implements FindAllTaskGroupsOutputPort {
     }
 
     @Override
-    public List<TaskGroup> findAllTaskGroups(Integer userId) {
+    public List<TaskGroup> findAllTaskGroups(UUID userId) {
         return jpaTaskGroupRepository
                 .findAll()
                 .stream()
