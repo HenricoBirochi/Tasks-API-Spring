@@ -13,7 +13,8 @@ public class InsertTaskGroupUseCase implements InsertTaskGroupInputPort {
     }
 
     @Override
-    public void insertTaskGroup(TaskGroup taskGroup) {
+    public TaskGroup insertTaskGroup(TaskGroup taskGroup) {
         insertTaskGroupOutputPort.insertTaskGroup(taskGroup);
+        return taskGroup;
     }
 }

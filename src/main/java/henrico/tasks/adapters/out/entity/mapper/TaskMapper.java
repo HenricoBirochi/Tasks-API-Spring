@@ -33,6 +33,7 @@ public class TaskMapper {
                 .id(task.getId())
                 .title(task.getTitle())
                 .description(task.getDescription())
+                .coins(task.getCoins())
                 .deadline(task.getDeadline())
                 .taskStatus(task.getTaskStatus())
                 .build();

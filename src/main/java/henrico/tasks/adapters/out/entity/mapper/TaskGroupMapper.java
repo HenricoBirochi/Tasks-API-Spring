@@ -16,4 +16,18 @@ public class TaskGroupMapper {
                 UserMapper.toUserShallow(taskGroupDbContext.getUser())
         );
     }
+
+    public static TaskGroupDbContext toTaskGroupDbContext(TaskGroup taskGroup) {
+        return TaskGroupDbContext
+                .builder()
+                .id(taskGroup.getId())
+                .name(taskGroup.getName())
+                .tasks(taskGroup
+                        .getTasks()
+                        .stream()
+                        .map(task -> TaskMapper.toTaskDbContext(task))
+                        .toList())
+                .user(UserMapper.toUserDbContext(taskGroup.getUser()))
+                .build();
+    }
 }
