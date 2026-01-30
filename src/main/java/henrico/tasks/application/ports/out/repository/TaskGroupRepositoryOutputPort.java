@@ -5,7 +5,7 @@ import henrico.tasks.application.core.domain.TaskGroup;
 import java.util.List;
 import java.util.UUID;
 
-public interface TaskGroupRepository {
+public interface TaskGroupRepositoryOutputPort {
 
     TaskGroup insert(TaskGroup taskGroup);
     TaskGroup findById(UUID taskGroupId);

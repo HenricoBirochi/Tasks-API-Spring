@@ -4,7 +4,7 @@ import henrico.tasks.adapters.out.jpa.entity.TaskGroupEntity;
 import henrico.tasks.adapters.out.jpa.mapper.TaskGroupMapper;
 import henrico.tasks.adapters.out.jpa.repository.JpaTaskGroupRepository;
 import henrico.tasks.application.core.domain.TaskGroup;
-import henrico.tasks.application.ports.out.repository.TaskGroupRepository;
+import henrico.tasks.application.ports.out.repository.TaskGroupRepositoryOutputPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public class JpaTaskGroupRepositoryImpl implements TaskGroupRepository {
+public class JpaTaskGroupRepositoryImpl implements TaskGroupRepositoryOutputPort {
 
     @Autowired
     private JpaTaskGroupRepository jpaTaskGroupRepository;

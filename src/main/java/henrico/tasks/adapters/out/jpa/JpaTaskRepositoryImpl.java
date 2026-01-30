@@ -4,7 +4,7 @@ import henrico.tasks.adapters.out.jpa.entity.TaskEntity;
 import henrico.tasks.adapters.out.jpa.mapper.TaskMapper;
 import henrico.tasks.adapters.out.jpa.repository.JpaTaskRepository;
 import henrico.tasks.application.core.domain.Task;
-import henrico.tasks.application.ports.out.repository.TaskRepository;
+import henrico.tasks.application.ports.out.repository.TaskRepositoryOutputPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public class JpaTaskRepositoryImpl implements TaskRepository {
+public class JpaTaskRepositoryImpl implements TaskRepositoryOutputPort {
 
     @Autowired
     private JpaTaskRepository jpaTaskRepository;

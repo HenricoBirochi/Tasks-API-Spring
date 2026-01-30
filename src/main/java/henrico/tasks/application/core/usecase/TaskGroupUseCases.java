@@ -2,37 +2,37 @@ package henrico.tasks.application.core.usecase;
 
 import henrico.tasks.application.core.domain.TaskGroup;
 import henrico.tasks.application.ports.in.TaskGroupInputPort;
-import henrico.tasks.application.ports.out.repository.TaskGroupRepository;
+import henrico.tasks.application.ports.out.repository.TaskGroupRepositoryOutputPort;
 
 import java.util.List;
 import java.util.UUID;
 
 public class TaskGroupUseCases implements TaskGroupInputPort {
 
-    private final TaskGroupRepository taskGroupRepository;
+    private final TaskGroupRepositoryOutputPort taskGroupRepositoryOutputPort;
 
-    public TaskGroupUseCases(TaskGroupRepository taskGroupRepository) {
-        this.taskGroupRepository = taskGroupRepository;
+    public TaskGroupUseCases(TaskGroupRepositoryOutputPort taskGroupRepositoryOutputPort) {
+        this.taskGroupRepositoryOutputPort = taskGroupRepositoryOutputPort;
     }
 
     @Override
     public TaskGroup insertTaskGroup(TaskGroup taskGroup) {
-        return taskGroupRepository.insert(taskGroup);
+        return taskGroupRepositoryOutputPort.insert(taskGroup);
 
     }
 
     @Override
     public TaskGroup findTaskGroupById(UUID taskGroupId) {
-        return taskGroupRepository.findById(taskGroupId);
+        return taskGroupRepositoryOutputPort.findById(taskGroupId);
     }
 
     @Override
     public List<TaskGroup> findAllTaskGroups(UUID userId) {
-        return taskGroupRepository.findAll(userId);
+        return taskGroupRepositoryOutputPort.findAll(userId);
     }
 
     @Override
     public void deleteTaskGroup(UUID taskGroupId) {
-        taskGroupRepository.delete(taskGroupId);
+        taskGroupRepositoryOutputPort.delete(taskGroupId);
     }
 }
