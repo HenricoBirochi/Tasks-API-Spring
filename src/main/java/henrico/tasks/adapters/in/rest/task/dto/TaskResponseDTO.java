@@ -17,6 +17,7 @@ public class TaskResponseDTO {
     private UUID id;
     private String title;
     private String description;
+    private Integer coins;
     private LocalDateTime deadline;
     private TaskStatus taskStatus;
 }

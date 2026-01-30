@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public class TaskGroupRepositoryImpl implements TaskGroupRepository {
+public class JpaTaskGroupRepositoryImpl implements TaskGroupRepository {
 
     @Autowired
     private JpaTaskGroupRepository jpaTaskGroupRepository;

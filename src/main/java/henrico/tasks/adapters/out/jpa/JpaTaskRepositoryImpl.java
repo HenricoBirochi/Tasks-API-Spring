@@ -9,11 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public class TaskRepositoryImpl implements TaskRepository {
+public class JpaTaskRepositoryImpl implements TaskRepository {
 
     @Autowired
     private JpaTaskRepository jpaTaskRepository;
