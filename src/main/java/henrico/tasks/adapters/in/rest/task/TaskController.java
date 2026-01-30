@@ -21,16 +21,22 @@ public class TaskController {
         this.taskInputPort = taskInputPort;
     }
 
+    @PostMapping("/")
+    public ResponseEntity<Task> insertTask(Task task) {
+        var taskResponse = taskInputPort.insertTask(task);
+        return ResponseEntity.status(201).body(taskResponse);
+    }
+
     @GetMapping("/all")
     public ResponseEntity<List<Task>> getAllTasks(UUID taskGroupId) {
         var allTasks = taskInputPort.findAllTasks(taskGroupId);
         return ResponseEntity.status(200).body(allTasks);
     }
 
-    @PostMapping("/")
-    public ResponseEntity<Void> insertTask(Task task) {
-        taskInputPort.insertTask(task);
-        return ResponseEntity.status(201).build();
+    @GetMapping("/")
+    public ResponseEntity<Task> getTask(UUID taskId) {
+        var taskResponse = taskInputPort.findTaskById(taskId);
+        return ResponseEntity.status(200).body(taskResponse);
     }
 
 }
