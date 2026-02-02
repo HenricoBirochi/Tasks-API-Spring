@@ -1,6 +1,5 @@
 package henrico.tasks.adapters.out.jpa.repository;
 
-import java.util.List;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
