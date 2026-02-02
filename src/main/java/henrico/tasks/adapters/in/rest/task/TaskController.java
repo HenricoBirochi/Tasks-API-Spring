@@ -1,12 +1,11 @@
 package henrico.tasks.adapters.in.rest.task;
 
+import henrico.tasks.adapters.in.rest.task.dto.TaskRequestDTO;
+import henrico.tasks.adapters.in.rest.task.mapper.TaskRequestMapper;
 import henrico.tasks.application.core.domain.Task;
 import henrico.tasks.application.ports.in.TaskInputPort;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -22,7 +21,8 @@ public class TaskController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<Task> insertTask(Task task) {
+    public ResponseEntity<Task> insertTask(TaskRequestDTO taskRequestDTO) {
+        var task = TaskRequestMapper.toTask(taskRequestDTO);
         var taskResponse = taskInputPort.insertTask(task);
         return ResponseEntity.status(201).body(taskResponse);
     }
@@ -37,6 +37,12 @@ public class TaskController {
     public ResponseEntity<Task> getTask(UUID taskId) {
         var taskResponse = taskInputPort.findTaskById(taskId);
         return ResponseEntity.status(200).body(taskResponse);
+    }
+
+    @DeleteMapping("/")
+    public ResponseEntity<Void> deleteTask(UUID taskId) {
+        taskInputPort.deleteTask(taskId);
+        return ResponseEntity.status(204).build();
     }
 
 }

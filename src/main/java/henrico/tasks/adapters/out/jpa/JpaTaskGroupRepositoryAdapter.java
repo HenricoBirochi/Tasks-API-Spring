@@ -5,21 +5,28 @@ import henrico.tasks.adapters.out.jpa.mapper.TaskGroupMapper;
 import henrico.tasks.adapters.out.jpa.repository.JpaTaskGroupRepository;
 import henrico.tasks.application.core.domain.TaskGroup;
 import henrico.tasks.application.ports.out.repository.TaskGroupRepositoryOutputPort;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.UUID;
 
 @Repository
-public class JpaTaskGroupRepositoryImpl implements TaskGroupRepositoryOutputPort {
+public class JpaTaskGroupRepositoryAdapter implements TaskGroupRepositoryOutputPort {
 
-    @Autowired
     private JpaTaskGroupRepository jpaTaskGroupRepository;
+    private TaskGroupMapper taskGroupMapper;
+
+    public JpaTaskGroupRepositoryAdapter(
+            JpaTaskGroupRepository jpaTaskGroupRepository,
+            TaskGroupMapper taskGroupMapper
+    ) {
+        this.jpaTaskGroupRepository = jpaTaskGroupRepository;
+        this.taskGroupMapper = taskGroupMapper;
+    }
 
     @Override
     public TaskGroup insert(TaskGroup taskGroup) {
-        TaskGroupEntity taskGroupEntity = TaskGroupMapper.toTaskGroupDbContext(taskGroup);
+        TaskGroupEntity taskGroupEntity = taskGroupMapper.toTaskGroupEntity(taskGroup);
         jpaTaskGroupRepository.save(taskGroupEntity);
         return taskGroup;
     }
@@ -27,7 +34,7 @@ public class JpaTaskGroupRepositoryImpl implements TaskGroupRepositoryOutputPort
     @Override
     public TaskGroup findById(UUID taskGroupId) {
         var taskGroupEntity = jpaTaskGroupRepository.findById(taskGroupId).orElse(null);
-        return TaskGroupMapper.toTaskGroup(taskGroupEntity);
+        return taskGroupMapper.toTaskGroup(taskGroupEntity);
     }
 
     @Override
@@ -35,8 +42,8 @@ public class JpaTaskGroupRepositoryImpl implements TaskGroupRepositoryOutputPort
         return jpaTaskGroupRepository
                 .findAll()
                 .stream()
-                .filter(taskGroupDbContext -> taskGroupDbContext.getUser().getId().equals(userId))
-                .map(taskGroupDbContext -> TaskGroupMapper.toTaskGroup(taskGroupDbContext))
+                .filter(taskGroupDbContext -> taskGroupDbContext.getUserEntity().getId().equals(userId))
+                .map(taskGroupDbContext -> taskGroupMapper.toTaskGroup(taskGroupDbContext))
                 .toList();
     }
 

@@ -5,21 +5,28 @@ import henrico.tasks.adapters.out.jpa.mapper.TaskMapper;
 import henrico.tasks.adapters.out.jpa.repository.JpaTaskRepository;
 import henrico.tasks.application.core.domain.Task;
 import henrico.tasks.application.ports.out.repository.TaskRepositoryOutputPort;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.UUID;
 
 @Repository
-public class JpaTaskRepositoryImpl implements TaskRepositoryOutputPort {
+public class JpaTaskRepositoryAdapter implements TaskRepositoryOutputPort {
 
-    @Autowired
     private JpaTaskRepository jpaTaskRepository;
+    private TaskMapper taskMapper;
+
+    public JpaTaskRepositoryAdapter(
+            JpaTaskRepository jpaTaskRepository,
+            TaskMapper taskMapper
+    ) {
+        this.jpaTaskRepository = jpaTaskRepository;
+        this.taskMapper = taskMapper;
+    }
 
     @Override
     public Task insert(Task task) {
-        TaskEntity taskEntity = TaskMapper.toTaskDbContext(task);
+        TaskEntity taskEntity = taskMapper.toTaskEntity(task);
         jpaTaskRepository.save(taskEntity);
         return task;
     }
@@ -27,15 +34,19 @@ public class JpaTaskRepositoryImpl implements TaskRepositoryOutputPort {
     @Override
     public Task findById(UUID taskId) {
         TaskEntity taskEntity = jpaTaskRepository.findById(taskId).orElse(null);
-        return TaskMapper.toTaskShallow(taskEntity);
+        return taskMapper.toTask(taskEntity);
     }
 
     @Override
     public List<Task> findAll(UUID taskGroupId) {
-        var allTasks = jpaTaskRepository.findByTaskGroupId(taskGroupId);
+        var allTasks = jpaTaskRepository
+                .findAll()
+                .stream()
+                .filter(taskEntity -> taskEntity.getTaskGroupEntity().getId().equals(taskGroupId))
+                .toList();
         return allTasks
                 .stream()
-                .map(taskDbContext -> TaskMapper.toTaskDeep(taskDbContext))
+                .map(taskEntity -> taskMapper.toTask(taskEntity))
                 .toList();
     }
 

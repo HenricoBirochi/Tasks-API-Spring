@@ -3,10 +3,7 @@ package henrico.tasks.adapters.in.rest.taskgroup;
 import henrico.tasks.application.core.domain.TaskGroup;
 import henrico.tasks.application.ports.in.TaskGroupInputPort;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -39,7 +36,7 @@ public class TaskGroupsController {
         return ResponseEntity.ok(taskGorupResponse);
     }
 
-    @PostMapping("/")
+    @DeleteMapping("/")
     public ResponseEntity<Void> deleteTaskGroup(UUID taskGroupId) {
         taskGroupInputPort.deleteTaskGroup(taskGroupId);
         return ResponseEntity.status(204).build();

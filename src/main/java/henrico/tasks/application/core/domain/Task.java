@@ -12,25 +12,25 @@ public class Task {
     private Integer coins;
     private LocalDateTime deadline;
     private TaskStatus taskStatus;
-    private TaskGroup taskGroup;
+    private UUID taskGroupId;
 
-    public Task(UUID id, String title, String description, Integer coins, LocalDateTime deadline, TaskStatus taskStatus) {
+    public Task(UUID id, String title, String description, Integer coins, LocalDateTime deadline, TaskStatus taskStatus, UUID taskGroupId) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.coins = coins;
         this.deadline = deadline;
         this.taskStatus = taskStatus;
+        this.taskGroupId = taskGroupId;
     }
 
-    public Task(UUID id, String title, String description, Integer coins, LocalDateTime deadline, TaskStatus taskStatus, TaskGroup taskGroup) {
-        this.id = id;
+    public Task(String title, String description, Integer coins, LocalDateTime deadline, TaskStatus taskStatus, UUID taskGroupId) {
         this.title = title;
         this.description = description;
         this.coins = coins;
         this.deadline = deadline;
         this.taskStatus = taskStatus;
-        this.taskGroup = taskGroup;
+        this.taskGroupId = taskGroupId;
     }
 
     public UUID getId() {
@@ -81,11 +81,11 @@ public class Task {
         this.taskStatus = taskStatus;
     }
 
-    public TaskGroup getTaskGroup() {
-        return taskGroup;
+    public UUID getTaskGroupId() {
+        return taskGroupId;
     }
 
-    public void setTaskGroup(TaskGroup taskGroup) {
-        this.taskGroup = taskGroup;
+    public void setTaskGroupId(UUID taskGroupId) {
+        this.taskGroupId = taskGroupId;
     }
 }

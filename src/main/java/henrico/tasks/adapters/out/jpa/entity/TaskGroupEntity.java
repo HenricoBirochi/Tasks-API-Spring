@@ -26,8 +26,8 @@ public class TaskGroupEntity {
     @OneToMany(fetch = FetchType.LAZY)
     private List<TaskEntity> tasks;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
-    private UserEntity user;
+    private UserEntity userEntity;
 
 }

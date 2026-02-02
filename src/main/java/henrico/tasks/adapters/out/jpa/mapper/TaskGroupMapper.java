@@ -1,33 +1,43 @@
 package henrico.tasks.adapters.out.jpa.mapper;
 
 import henrico.tasks.adapters.out.jpa.entity.TaskGroupEntity;
+import henrico.tasks.adapters.out.jpa.entity.UserEntity;
 import henrico.tasks.application.core.domain.TaskGroup;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import org.springframework.stereotype.Component;
 
+@Component
 public class TaskGroupMapper {
-    public static TaskGroup toTaskGroup(TaskGroupEntity taskGroupEntity) {
+
+    private TaskMapper taskMapper;
+
+    public TaskGroupMapper(TaskMapper taskMapper) {
+        this.taskMapper = taskMapper;
+    }
+
+    @PersistenceContext
+    private EntityManager em;
+
+    public TaskGroup toTaskGroup(TaskGroupEntity taskGroupEntity) {
         return new TaskGroup(
                 taskGroupEntity.getId(),
                 taskGroupEntity.getName(),
                 taskGroupEntity
                         .getTasks()
                         .stream()
-                        .map(taskDbContext -> TaskMapper.toTaskShallow(taskDbContext))
+                        .map(taskEntity -> taskMapper.toTask(taskEntity))
                         .toList(),
-                UserMapper.toUserShallow(taskGroupEntity.getUser())
+                taskGroupEntity.getUserEntity().getId()
         );
     }
 
-    public static TaskGroupEntity toTaskGroupDbContext(TaskGroup taskGroup) {
+    public TaskGroupEntity toTaskGroupEntity(TaskGroup taskGroup) {
         return TaskGroupEntity
                 .builder()
                 .id(taskGroup.getId())
                 .name(taskGroup.getName())
-                .tasks(taskGroup
-                        .getTasks()
-                        .stream()
-                        .map(task -> TaskMapper.toTaskDbContext(task))
-                        .toList())
-                .user(UserMapper.toUserDbContext(taskGroup.getUser()))
+                .userEntity(em.getReference(UserEntity.class, taskGroup.getUserId()))
                 .build();
     }
 }

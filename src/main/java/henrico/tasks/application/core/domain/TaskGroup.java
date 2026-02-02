@@ -7,13 +7,13 @@ public class TaskGroup {
     private UUID id;
     private String name;
     private List<Task> tasks;
-    private User user;
+    private UUID userId;
 
-    public TaskGroup(UUID id, String name, List<Task> tasks, User user) {
+    public TaskGroup(UUID id, String name, List<Task> tasks, UUID userId) {
         this.id = id;
         this.name = name;
         this.tasks = tasks;
-        this.user = user;
+        this.userId = userId;
     }
 
     public UUID getId() {
@@ -40,11 +40,11 @@ public class TaskGroup {
         this.tasks = tasks;
     }
 
-    public User getUser() {
-        return user;
+    public UUID getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(UUID userId) {
+        this.userId = userId;
     }
 }

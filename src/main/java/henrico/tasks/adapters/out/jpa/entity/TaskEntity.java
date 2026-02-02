@@ -36,7 +36,7 @@ public class TaskEntity {
     @Enumerated(EnumType.STRING)
     private TaskStatus taskStatus;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "task_group_id", nullable = false)
     private TaskGroupEntity taskGroupEntity;
 
