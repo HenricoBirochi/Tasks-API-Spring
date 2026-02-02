@@ -1,6 +1,5 @@
 package henrico.tasks.adapters.in.rest.task.dto;
 
-import henrico.tasks.application.core.domain.TaskGroup;
 import henrico.tasks.application.core.domain.enums.TaskStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
