@@ -1,0 +1,51 @@
+package henrico.tasks.adapters.out.jpa;
+
+import java.util.List;
+import java.util.UUID;
+
+import henrico.tasks.adapters.out.jpa.mapper.UserMapper;
+import henrico.tasks.adapters.out.jpa.repository.JpaUserRepository;
+import henrico.tasks.application.core.domain.User;
+import henrico.tasks.application.ports.out.repository.UserRepositoryOutputPort;
+
+public class JpaUserRepositoryAdapter implements UserRepositoryOutputPort {
+
+    private final JpaUserRepository jpaUserRepository;
+    private final UserMapper userMapper;
+
+    public JpaUserRepositoryAdapter(
+        JpaUserRepository jpaUserRepository,
+        UserMapper userMapper
+    ) {
+        this.jpaUserRepository = jpaUserRepository;
+        this.userMapper = userMapper;
+    }
+
+    @Override
+    public User insert(User user) {
+        var userEntity = userMapper.toUserEntity(user);
+        jpaUserRepository.save(userEntity);
+        return user;
+    }
+
+    @Override
+    public User findById(UUID userId) {
+        var userEntity = jpaUserRepository.findById(userId).orElse(null);
+        return userMapper.toUser(userEntity);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return jpaUserRepository
+                .findAll()
+                .stream()
+                .map(userEntity -> userMapper.toUser(userEntity))
+                .toList();
+    }
+
+    @Override
+    public void delete(UUID userId) {
+        jpaUserRepository.deleteById(userId);
+    }
+
+}

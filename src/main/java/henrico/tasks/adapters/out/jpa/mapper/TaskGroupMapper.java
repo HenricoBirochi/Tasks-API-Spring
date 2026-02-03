@@ -1,16 +1,17 @@
 package henrico.tasks.adapters.out.jpa.mapper;
 
+import org.springframework.stereotype.Component;
+
 import henrico.tasks.adapters.out.jpa.entity.TaskGroupEntity;
 import henrico.tasks.adapters.out.jpa.entity.UserEntity;
 import henrico.tasks.application.core.domain.TaskGroup;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import org.springframework.stereotype.Component;
 
 @Component
 public class TaskGroupMapper {
 
-    private TaskMapper taskMapper;
+    private final TaskMapper taskMapper;
 
     public TaskGroupMapper(TaskMapper taskMapper) {
         this.taskMapper = taskMapper;

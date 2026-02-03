@@ -4,7 +4,7 @@ import henrico.tasks.adapters.out.jpa.entity.UserEntity;
 import henrico.tasks.application.core.domain.User;
 
 public class UserMapper {
-    public static User toUserShallow(UserEntity userEntity) {
+    public User toUser(UserEntity userEntity) {
         return new User(
                 userEntity.getId(),
                 userEntity.getName(),
@@ -14,7 +14,7 @@ public class UserMapper {
         );
     }
 
-    public static UserEntity toUserDbContext(User user) {
+    public UserEntity toUserEntity(User user) {
         return UserEntity
                 .builder()
                 .id(user.getId())

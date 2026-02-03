@@ -1,20 +1,21 @@
 package henrico.tasks.adapters.out.jpa;
 
+import java.util.List;
+import java.util.UUID;
+
+import org.springframework.stereotype.Repository;
+
 import henrico.tasks.adapters.out.jpa.entity.TaskGroupEntity;
 import henrico.tasks.adapters.out.jpa.mapper.TaskGroupMapper;
 import henrico.tasks.adapters.out.jpa.repository.JpaTaskGroupRepository;
 import henrico.tasks.application.core.domain.TaskGroup;
 import henrico.tasks.application.ports.out.repository.TaskGroupRepositoryOutputPort;
-import org.springframework.stereotype.Repository;
-
-import java.util.List;
-import java.util.UUID;
 
 @Repository
 public class JpaTaskGroupRepositoryAdapter implements TaskGroupRepositoryOutputPort {
 
-    private JpaTaskGroupRepository jpaTaskGroupRepository;
-    private TaskGroupMapper taskGroupMapper;
+    private final JpaTaskGroupRepository jpaTaskGroupRepository;
+    private final TaskGroupMapper taskGroupMapper;
 
     public JpaTaskGroupRepositoryAdapter(
             JpaTaskGroupRepository jpaTaskGroupRepository,
