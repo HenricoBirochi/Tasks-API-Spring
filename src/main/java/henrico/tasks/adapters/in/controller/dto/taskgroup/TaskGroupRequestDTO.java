@@ -1,4 +1,4 @@
-package henrico.tasks.adapters.in.rest.taskgroup.dto;
+package henrico.tasks.adapters.in.controller.dto.taskgroup;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

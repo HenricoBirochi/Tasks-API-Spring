@@ -1,12 +1,18 @@
-package henrico.tasks.adapters.in.rest.taskgroup;
-
-import henrico.tasks.application.core.domain.TaskGroup;
-import henrico.tasks.application.ports.in.TaskGroupInputPort;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+package henrico.tasks.adapters.in.controller;
 
 import java.util.List;
 import java.util.UUID;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import henrico.tasks.application.core.domain.TaskGroup;
+import henrico.tasks.application.ports.in.TaskGroupInputPort;
 
 @RestController
 @RequestMapping("/task-groups")
@@ -19,7 +25,7 @@ public class TaskGroupsController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<TaskGroup> postTaskGroup(TaskGroup taskGroup) {
+    public ResponseEntity<TaskGroup> postTaskGroup(@RequestParam TaskGroup taskGroup) {
         var taskGroupResponse = taskGroupInputPort.insertTaskGroup(taskGroup);
         return ResponseEntity.status(201).body(taskGroupResponse);
     }

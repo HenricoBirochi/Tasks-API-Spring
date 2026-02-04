@@ -1,4 +1,4 @@
-package henrico.tasks.adapters.in.rest.task.dto;
+package henrico.tasks.adapters.in.controller.dto.task;
 
 import henrico.tasks.application.core.domain.enums.TaskStatus;
 import lombok.AllArgsConstructor;

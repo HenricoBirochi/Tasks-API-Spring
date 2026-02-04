@@ -8,6 +8,7 @@ import java.util.UUID;
 public interface UserInputPort {
 
     User insertUser(User user);
+    User updateUser(User user);
     User findUserById(UUID userId);
     List<User> findAllUsers();
     void deleteUser(UUID userId);

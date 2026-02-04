@@ -1,7 +1,7 @@
-package henrico.tasks.adapters.in.rest.task;
+package henrico.tasks.adapters.in.controller;
 
-import henrico.tasks.adapters.in.rest.task.dto.TaskRequestDTO;
-import henrico.tasks.adapters.in.rest.task.mapper.TaskRequestMapper;
+import henrico.tasks.adapters.in.controller.dto.task.TaskRequestDTO;
+import henrico.tasks.adapters.in.controller.mapper.task.TaskRequestMapper;
 import henrico.tasks.application.core.domain.Task;
 import henrico.tasks.application.ports.in.TaskInputPort;
 import org.springframework.http.ResponseEntity;

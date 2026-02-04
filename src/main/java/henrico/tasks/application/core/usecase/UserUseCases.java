@@ -21,6 +21,11 @@ public class UserUseCases implements UserInputPort {
     }
 
     @Override
+    public User updateUser(User user) {
+        return userRepositoryOutputPort.update(user);
+    }
+
+    @Override
     public User findUserById(UUID userId) {
         return userRepositoryOutputPort.findById(userId);
     }

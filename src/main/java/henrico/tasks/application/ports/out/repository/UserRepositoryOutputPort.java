@@ -8,6 +8,7 @@ import java.util.UUID;
 public interface UserRepositoryOutputPort {
 
     User insert(User user);
+    User update(User user);
     User findById(UUID userId);
     List<User> findAll();
     void delete(UUID userId);

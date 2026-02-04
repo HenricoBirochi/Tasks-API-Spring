@@ -1,6 +1,6 @@
-package henrico.tasks.adapters.in.rest.task.mapper;
+package henrico.tasks.adapters.in.controller.mapper.task;
 
-import henrico.tasks.adapters.in.rest.task.dto.TaskResponseDTO;
+import henrico.tasks.adapters.in.controller.dto.task.TaskResponseDTO;
 import henrico.tasks.application.core.domain.Task;
 
 public class TaskResponseMapper {
