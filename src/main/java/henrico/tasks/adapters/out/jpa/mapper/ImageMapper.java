@@ -9,6 +9,7 @@ public class ImageMapper {
                 .builder()
                 .id(image.getId())
                 .imageName(image.getImageName())
+                .imageExtension(image.getImageExtension())
                 .imagePath(image.getImagePath())
                 .build();
     }
@@ -16,6 +17,7 @@ public class ImageMapper {
         return new Image(
                 imageEntity.getId(),
                 imageEntity.getImageName(),
+                imageEntity.getImageExtension(),
                 imageEntity.getImagePath()
         );
     }

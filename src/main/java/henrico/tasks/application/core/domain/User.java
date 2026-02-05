@@ -1,33 +1,29 @@
 package henrico.tasks.application.core.domain;
 
-import henrico.tasks.application.core.domain.enums.UserRole;
-
-import java.util.List;
 import java.util.UUID;
+
+import henrico.tasks.application.core.domain.enums.UserRole;
 
 public class User {
     private UUID id;
     private String name;
+    private String email;
+    private String password;
     private Integer coins;
-    private Image image;
     private UserRole userRole;
-    private List<TaskGroup> taskGroups;
+    private UUID imageId;
 
-    public User(UUID id, String name, Integer coins, Image image, UserRole userRole) {
-        this.id = id;
-        this.name = name;
-        this.coins = coins;
-        this.image = image;
-        this.userRole = userRole;
+    public User() {
     }
 
-    public User(UUID id, String name, Integer coins, Image image, UserRole userRole, List<TaskGroup> taskGroups) {
+    public User(UUID id, String name, String email, String password, Integer coins, UserRole userRole, UUID imageId) {
         this.id = id;
         this.name = name;
+        this.email = email;
+        this.password = password;
         this.coins = coins;
-        this.image = image;
         this.userRole = userRole;
-        this.taskGroups = taskGroups;
+        this.imageId = imageId;
     }
 
     public UUID getId() {
@@ -46,20 +42,28 @@ public class User {
         this.name = name;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public Integer getCoins() {
         return coins;
     }
 
     public void setCoins(Integer coins) {
         this.coins = coins;
-    }
-
-    public Image getImage() {
-        return image;
-    }
-
-    public void setImage(Image image) {
-        this.image = image;
     }
 
     public UserRole getUserRole() {
@@ -70,11 +74,11 @@ public class User {
         this.userRole = userRole;
     }
 
-    public List<TaskGroup> getTaskGroups() {
-        return taskGroups;
+    public UUID getImageId() {
+        return imageId;
     }
 
-    public void setTaskGroups(List<TaskGroup> taskGroups) {
-        this.taskGroups = taskGroups;
+    public void setImageId(UUID imageId) {
+        this.imageId = imageId;
     }
 }

@@ -22,6 +22,9 @@ public class ImageEntity {
     @Column(nullable = false, name = "image_name")
     private String imageName;
 
+    @Column(nullable = false, name = "image_extension")
+    private String imageExtension;
+
     @Column(nullable = false, name = "image_path")
     private String imagePath;
 

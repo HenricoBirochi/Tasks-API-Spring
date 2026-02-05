@@ -33,18 +33,20 @@ public class JpaTaskRepositoryAdapter implements TaskRepositoryOutputPort {
     }
 
     @Override
+    public Task update(Task task) {
+        return null;
+    }
+
+    @Override
     public Task findById(UUID taskId) {
         TaskEntity taskEntity = jpaTaskRepository.findById(taskId).orElse(null);
         return taskMapper.toTask(taskEntity);
     }
 
     @Override
-    public List<Task> findAll(UUID taskGroupId) {
+    public List<Task> findAll() {
         var allTasks = jpaTaskRepository
-                .findAll()
-                .stream()
-                .filter(taskEntity -> taskEntity.getTaskGroupEntity().getId().equals(taskGroupId))
-                .toList();
+                .findAll();
         return allTasks
                 .stream()
                 .map(taskEntity -> taskMapper.toTask(taskEntity))

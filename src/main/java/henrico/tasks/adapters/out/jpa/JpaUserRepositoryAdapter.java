@@ -42,7 +42,7 @@ public class JpaUserRepositoryAdapter implements UserRepositoryOutputPort {
             for(Field field : fields) {
                 field.setAccessible(true);
 
-                if(field == null || field.equals("")) {
+                if(field.get(user) == null || field.get(user).equals("")) {
                     continue;
                 }
 

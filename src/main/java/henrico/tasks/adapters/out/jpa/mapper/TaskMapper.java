@@ -1,7 +1,8 @@
 package henrico.tasks.adapters.out.jpa.mapper;
 
 import henrico.tasks.adapters.out.jpa.entity.TaskEntity;
-import henrico.tasks.adapters.out.jpa.entity.TaskGroupEntity;
+import henrico.tasks.adapters.out.jpa.entity.TaskTagEntity;
+import henrico.tasks.adapters.out.jpa.entity.UserEntity;
 import henrico.tasks.application.core.domain.Task;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -21,7 +22,8 @@ public class TaskMapper {
                 taskEntity.getCoins(),
                 taskEntity.getDeadline(),
                 taskEntity.getTaskStatus(),
-                taskEntity.getTaskGroupEntity().getId()
+                taskEntity.getTaskTagEntity().getId(),
+                taskEntity.getUserEntity().getId()
         );
     }
 
@@ -29,12 +31,13 @@ public class TaskMapper {
         return TaskEntity
                 .builder()
                 .id(task.getId())
+                .coins(task.getCoins())
                 .title(task.getTitle())
                 .description(task.getDescription())
-                .coins(task.getCoins())
                 .deadline(task.getDeadline())
                 .taskStatus(task.getTaskStatus())
-                .taskGroupEntity(em.getReference(TaskGroupEntity.class, task.getTaskGroupId()))
+                .taskTagEntity(em.getReference(TaskTagEntity.class, task.getTaskTagId()))
+                .userEntity(em.getReference(UserEntity.class, task.getUserId()))
                 .build();
     }
 }

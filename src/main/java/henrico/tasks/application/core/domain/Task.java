@@ -7,30 +7,37 @@ import java.util.UUID;
 
 public class Task {
     private UUID id;
+    private Integer coins;
     private String title;
     private String description;
-    private Integer coins;
     private LocalDateTime deadline;
     private TaskStatus taskStatus;
-    private UUID taskGroupId;
+    private UUID taskTagId;
+    private UUID userId;
 
-    public Task(UUID id, String title, String description, Integer coins, LocalDateTime deadline, TaskStatus taskStatus, UUID taskGroupId) {
+    public Task() {
+
+    }
+
+    public Task(String title, String description, Integer coins, LocalDateTime deadline, TaskStatus taskStatus, UUID taskTagId, UUID userId) {
+        this.title = title;
+        this.description = description;
+        this.coins = coins;
+        this.deadline = deadline;
+        this.taskStatus = taskStatus;
+        this.taskTagId = taskTagId;
+        this.userId = userId;
+    }
+
+    public Task(UUID id, String title, String description, Integer coins, LocalDateTime deadline, TaskStatus taskStatus, UUID taskTagId, UUID userId) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.coins = coins;
         this.deadline = deadline;
         this.taskStatus = taskStatus;
-        this.taskGroupId = taskGroupId;
-    }
-
-    public Task(String title, String description, Integer coins, LocalDateTime deadline, TaskStatus taskStatus, UUID taskGroupId) {
-        this.title = title;
-        this.description = description;
-        this.coins = coins;
-        this.deadline = deadline;
-        this.taskStatus = taskStatus;
-        this.taskGroupId = taskGroupId;
+        this.taskTagId = taskTagId;
+        this.userId = userId;
     }
 
     public UUID getId() {
@@ -81,11 +88,19 @@ public class Task {
         this.taskStatus = taskStatus;
     }
 
-    public UUID getTaskGroupId() {
-        return taskGroupId;
+    public UUID getTaskTagId() {
+        return taskTagId;
     }
 
-    public void setTaskGroupId(UUID taskGroupId) {
-        this.taskGroupId = taskGroupId;
+    public void setTaskTagId(UUID taskTagId) {
+        this.taskTagId = taskTagId;
+    }
+
+    public UUID getUserId() {
+        return userId;
+    }
+
+    public void setUserId(UUID userId) {
+        this.userId = userId;
     }
 }

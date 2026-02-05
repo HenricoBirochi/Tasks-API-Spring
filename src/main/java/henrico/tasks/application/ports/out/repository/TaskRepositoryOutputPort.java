@@ -8,8 +8,9 @@ import java.util.UUID;
 public interface TaskRepositoryOutputPort {
 
     Task insert(Task task);
+    Task update(Task task);
     Task findById(UUID taskId);
-    List<Task> findAll(UUID taskGroupId);
+    List<Task> findAll();
     void delete(UUID taskId);
 
 }

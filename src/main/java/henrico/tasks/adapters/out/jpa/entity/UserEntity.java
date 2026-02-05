@@ -25,6 +25,12 @@ public class UserEntity {
     private String name;
 
     @Column(nullable = false)
+    private String email;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false)
     private Integer coins;
 
     @Column(name = "user_role", nullable = false)
@@ -32,10 +38,13 @@ public class UserEntity {
     private UserRole userRole;
 
     @OneToOne
-    @JoinColumn(name = "image_id", nullable = false)
-    private ImageEntity image;
+    @JoinColumn(name = "image_id", nullable = true)
+    private ImageEntity imageEntity;
 
     @OneToMany(fetch = FetchType.LAZY)
-    private List<TaskGroupEntity> taskGroups;
+    private List<TaskEntity> tasks;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<TaskTagEntity> taskTags;
 
 }

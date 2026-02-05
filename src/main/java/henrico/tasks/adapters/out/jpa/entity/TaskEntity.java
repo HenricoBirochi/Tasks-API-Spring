@@ -21,13 +21,13 @@ public class TaskEntity {
     private UUID id;
 
     @Column(nullable = false)
+    private Integer coins;
+
+    @Column(nullable = false)
     private String title;
 
     @Column(nullable = false, length = 300)
     private String description;
-
-    @Column(nullable = false)
-    private Integer coins;
 
     @Column(nullable = false)
     private LocalDateTime deadline;
@@ -37,7 +37,11 @@ public class TaskEntity {
     private TaskStatus taskStatus;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "task_group_id", nullable = false)
-    private TaskGroupEntity taskGroupEntity;
+    @JoinColumn(name = "task_tag_id", nullable = false)
+    private TaskTagEntity taskTagEntity;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private UserEntity userEntity;
 
 }
