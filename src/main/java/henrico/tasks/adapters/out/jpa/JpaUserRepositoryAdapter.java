@@ -4,12 +4,13 @@ import java.lang.reflect.Field;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.stereotype.Repository;
+
 import henrico.tasks.adapters.out.jpa.mapper.UserMapper;
 import henrico.tasks.adapters.out.jpa.repository.JpaUserRepository;
 import henrico.tasks.application.core.domain.User;
 import henrico.tasks.application.ports.out.repository.UserRepositoryOutputPort;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.stereotype.Repository;
 
 @Repository
 public class JpaUserRepositoryAdapter implements UserRepositoryOutputPort {
@@ -28,15 +29,16 @@ public class JpaUserRepositoryAdapter implements UserRepositoryOutputPort {
     @Override
     public User insert(User user) {
         var userEntity = userMapper.toUserEntity(user);
-        jpaUserRepository.save(userEntity);
-        return user;
+        var userSaved = jpaUserRepository.save(userEntity);
+        return userMapper.toUser(userSaved);
     }
 
     @Override
     public User update(User user) {
         try {
             var userEntity = jpaUserRepository
-                    .findById(user.getId()).orElseThrow(() -> new EntityNotFoundException());
+                    .findById(user.getId())
+                    .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
             Field[] fields = User.class.getDeclaredFields();
             for(Field field : fields) {
@@ -48,6 +50,8 @@ public class JpaUserRepositoryAdapter implements UserRepositoryOutputPort {
 
                 field.set(userEntity, user);
             }
+
+            jpaUserRepository.save(userEntity);
 
             var newUser = userMapper.toUser(userEntity);
 

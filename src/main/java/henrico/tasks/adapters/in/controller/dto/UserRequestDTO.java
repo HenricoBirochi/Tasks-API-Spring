@@ -1,4 +1,4 @@
-package henrico.tasks.adapters.in.controller.dto.user;
+package henrico.tasks.adapters.in.controller.dto;
 
 import henrico.tasks.application.core.domain.enums.UserRole;
 import lombok.AllArgsConstructor;

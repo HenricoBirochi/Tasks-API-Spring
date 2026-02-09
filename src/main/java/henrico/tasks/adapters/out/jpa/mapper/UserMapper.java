@@ -1,11 +1,14 @@
 package henrico.tasks.adapters.out.jpa.mapper;
 
+import org.springframework.stereotype.Component;
+
 import henrico.tasks.adapters.out.jpa.entity.ImageEntity;
 import henrico.tasks.adapters.out.jpa.entity.UserEntity;
 import henrico.tasks.application.core.domain.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
+@Component
 public class UserMapper {
 
     @PersistenceContext

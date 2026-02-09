@@ -16,6 +16,13 @@ public class User {
     public User() {
     }
 
+    public User(String name, String email, String password, UserRole userRole) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.userRole = userRole;
+    }
+
     public User(UUID id, String name, String email, String password, Integer coins, UserRole userRole, UUID imageId) {
         this.id = id;
         this.name = name;
