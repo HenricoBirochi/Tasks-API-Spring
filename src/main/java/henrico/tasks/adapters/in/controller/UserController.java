@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import henrico.tasks.application.core.domain.User;
-import henrico.tasks.application.ports.in.user.CreateUserWithoutImageInputPort;
-import henrico.tasks.application.ports.in.user.FindUserByIdInputPort;
+import henrico.tasks.application.ports.in.CreateUserWithoutImageInputPort;
+import henrico.tasks.application.ports.in.FindUserByIdInputPort;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

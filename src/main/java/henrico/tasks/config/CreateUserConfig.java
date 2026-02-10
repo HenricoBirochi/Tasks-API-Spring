@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 import henrico.tasks.adapters.out.jpa.JpaTaskRepositoryAdapter;
 import henrico.tasks.adapters.out.jpa.JpaUserRepositoryAdapter;
-import henrico.tasks.application.core.usecase.user.CreateUserWithoutImageUseCase;
+import henrico.tasks.application.core.usecase.CreateUserWithoutImageUseCase;
 
 @Configuration
 public class CreateUserConfig {

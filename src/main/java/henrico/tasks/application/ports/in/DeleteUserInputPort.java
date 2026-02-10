@@ -1,4 +1,4 @@
-package henrico.tasks.application.ports.in.user;
+package henrico.tasks.application.ports.in;
 
 import java.util.UUID;
 

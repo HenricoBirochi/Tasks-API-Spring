@@ -3,7 +3,7 @@ package henrico.tasks.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import henrico.tasks.application.core.usecase.user.FindUserByIdUseCase;
+import henrico.tasks.application.core.usecase.FindUserByIdUseCase;
 
 @Configuration
 public class FindUserByIdConfig {
