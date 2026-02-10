@@ -1,11 +1,11 @@
 package henrico.tasks.application.core.domain;
 
 import henrico.tasks.application.core.domain.enums.TaskStatus;
-
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class Task {
+
     private UUID id;
     private Integer coins;
     private String title;
@@ -15,11 +15,17 @@ public class Task {
     private UUID taskTagId;
     private UUID userId;
 
-    public Task() {
+    public Task() {}
 
-    }
-
-    public Task(String title, String description, Integer coins, LocalDateTime deadline, TaskStatus taskStatus, UUID taskTagId, UUID userId) {
+    public Task(
+        String title,
+        String description,
+        Integer coins,
+        LocalDateTime deadline,
+        TaskStatus taskStatus,
+        UUID taskTagId,
+        UUID userId
+    ) {
         this.title = title;
         this.description = description;
         this.coins = coins;
@@ -29,7 +35,16 @@ public class Task {
         this.userId = userId;
     }
 
-    public Task(UUID id, String title, String description, Integer coins, LocalDateTime deadline, TaskStatus taskStatus, UUID taskTagId, UUID userId) {
+    public Task(
+        UUID id,
+        String title,
+        String description,
+        Integer coins,
+        LocalDateTime deadline,
+        TaskStatus taskStatus,
+        UUID taskTagId,
+        UUID userId
+    ) {
         this.id = id;
         this.title = title;
         this.description = description;
