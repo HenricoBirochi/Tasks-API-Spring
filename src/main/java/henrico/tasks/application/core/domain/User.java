@@ -23,6 +23,15 @@ public class User {
         this.userRole = userRole;
     }
 
+    public User(UUID id, String name, String email, String password, Integer coins, UserRole userRole) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.coins = coins;
+        this.userRole = userRole;
+    }
+
     public User(UUID id, String name, String email, String password, Integer coins, UserRole userRole, UUID imageId) {
         this.id = id;
         this.name = name;

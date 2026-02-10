@@ -13,12 +13,11 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(nullable = false)
     private UUID id;
 
     @Column(nullable = false)
@@ -39,7 +38,7 @@ public class UserEntity {
 
     @OneToOne
     @JoinColumn(name = "image_id", nullable = true)
-    private ImageEntity imageEntity;
+    private ImageEntity image;
 
     @OneToMany(fetch = FetchType.LAZY)
     private List<TaskEntity> tasks;

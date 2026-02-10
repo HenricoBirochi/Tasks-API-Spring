@@ -1,17 +1,18 @@
 package henrico.tasks.application.core.usecase.user;
 
 import henrico.tasks.application.core.domain.User;
+import henrico.tasks.application.core.domain.enums.UserRole;
 import henrico.tasks.application.core.usecase.user.exceptions.EmailAlreadyRegisteredException;
 import henrico.tasks.application.core.usecase.user.exceptions.PasswordNotValidException;
-import henrico.tasks.application.ports.in.user.CreateUserInputPort;
+import henrico.tasks.application.ports.in.user.CreateUserWithoutImageInputPort;
 import henrico.tasks.application.ports.out.repository.TaskRepositoryOutputPort;
 import henrico.tasks.application.ports.out.repository.UserRepositoryOutputPort;
 
-public class CreateUserUseCase implements CreateUserInputPort {
+public class CreateUserWithoutImageUseCase implements CreateUserWithoutImageInputPort {
     private final TaskRepositoryOutputPort taskRepositoryOutputPort;
     private final UserRepositoryOutputPort userRepositoryOutputPort;
 
-    public CreateUserUseCase(
+    public CreateUserWithoutImageUseCase(
             TaskRepositoryOutputPort taskRepositoryOutputPort,
             UserRepositoryOutputPort userRepositoryOutputPort
     ) {
@@ -25,11 +26,20 @@ public class CreateUserUseCase implements CreateUserInputPort {
             verifyUserPassword(user.getPassword());
             verifyIfEmailIsAlreadyRegistered(user.getEmail());
 
-            return userRepositoryOutputPort.insert(user);
+            var newUser = setCoinsAndUserRoleOfUser(user);
+
+            return userRepositoryOutputPort.insert(newUser);
         }
         catch(PasswordNotValidException | EmailAlreadyRegisteredException exception) {
             return new User();
         }
+    }
+
+    public User setCoinsAndUserRoleOfUser(User user) {
+        user.setCoins(0);
+        user.setUserRole(UserRole.NORMAL);
+
+        return user;
     }
 
     public void verifyUserPassword(String password) {

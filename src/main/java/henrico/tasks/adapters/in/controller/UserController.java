@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import henrico.tasks.application.core.domain.User;
-import henrico.tasks.application.ports.in.user.CreateUserInputPort;
+import henrico.tasks.application.ports.in.user.CreateUserWithoutImageInputPort;
 import henrico.tasks.application.ports.in.user.FindUserByIdInputPort;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,17 +25,17 @@ import henrico.tasks.adapters.in.controller.mapper.UserDTOMapper;
 public class UserController {
 
     private final FindUserByIdInputPort findUserByIdInputPort;
-    private final CreateUserInputPort createUserInputPort;
+    private final CreateUserWithoutImageInputPort createUserWithoutImageInputPort;
 
     private final UserDTOMapper userDTOMapper;
 
     public UserController(
         FindUserByIdInputPort findUserByIdInputPort,
-        CreateUserInputPort createUserInputPort,
+        CreateUserWithoutImageInputPort createUserWithoutImageInputPort,
         UserDTOMapper userDTOMapper
     ) {
         this.findUserByIdInputPort = findUserByIdInputPort;
-        this.createUserInputPort = createUserInputPort;
+        this.createUserWithoutImageInputPort = createUserWithoutImageInputPort;
         this.userDTOMapper = userDTOMapper;
     }
 
@@ -49,7 +49,7 @@ public class UserController {
     public ResponseEntity<User> postUser(@RequestBody UserRequestDTO userRequestDTO) {
         var user = userDTOMapper.toUser(userRequestDTO);
 
-        var userCreated = createUserInputPort.createUser(user);
+        var userCreated = createUserWithoutImageInputPort.createUser(user);
 
         return ResponseEntity.status(201).body(userCreated);
     }

@@ -22,7 +22,18 @@ public class UserMapper {
                 userEntity.getPassword(),
                 userEntity.getCoins(),
                 userEntity.getUserRole(),
-                userEntity.getImageEntity().getId()
+                userEntity.getImage().getId()
+        );
+    }
+
+    public User toUserWithoutImageId(UserEntity userEntity) {
+        return new User(
+                userEntity.getId(),
+                userEntity.getName(),
+                userEntity.getEmail(),
+                userEntity.getPassword(),
+                userEntity.getCoins(),
+                userEntity.getUserRole()
         );
     }
 
@@ -31,9 +42,23 @@ public class UserMapper {
                 .builder()
                 .id(user.getId())
                 .name(user.getName())
+                .email(user.getEmail())
+                .password(user.getPassword())
                 .coins(user.getCoins())
                 .userRole(user.getUserRole())
-                .imageEntity(em.getReference(ImageEntity.class, user.getImageId()))
+                .image(em.getReference(ImageEntity.class, user.getImageId()))
+                .build();
+    }
+
+    public UserEntity toUserEntityWithoutImageReference(User user) {
+        return UserEntity
+                .builder()
+                .id(user.getId())
+                .name(user.getName())
+                .email(user.getEmail())
+                .password(user.getPassword())
+                .coins(user.getCoins())
+                .userRole(user.getUserRole())
                 .build();
     }
 }
