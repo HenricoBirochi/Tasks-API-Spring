@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Zed ###
+.zed/
+
+### userImageUploads folder ###
+userImageUploads/
