@@ -11,16 +11,15 @@ public class User {
     private String password;
     private Integer coins;
     private UserRole userRole;
-    private UUID imageId;
+    private Image image;
 
     public User() {
     }
 
-    public User(String name, String email, String password, UserRole userRole) {
+    public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.userRole = userRole;
     }
 
     public User(UUID id, String name, String email, String password, Integer coins, UserRole userRole) {
@@ -32,14 +31,14 @@ public class User {
         this.userRole = userRole;
     }
 
-    public User(UUID id, String name, String email, String password, Integer coins, UserRole userRole, UUID imageId) {
+    public User(UUID id, String name, String email, String password, Integer coins, UserRole userRole, Image image) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.coins = coins;
         this.userRole = userRole;
-        this.imageId = imageId;
+        this.image = image;
     }
 
     public UUID getId() {
@@ -90,11 +89,11 @@ public class User {
         this.userRole = userRole;
     }
 
-    public UUID getImageId() {
-        return imageId;
+    public Image getImage() {
+        return image;
     }
 
-    public void setImageId(UUID imageId) {
-        this.imageId = imageId;
+    public void setImage(Image image) {
+        this.image = image;
     }
 }

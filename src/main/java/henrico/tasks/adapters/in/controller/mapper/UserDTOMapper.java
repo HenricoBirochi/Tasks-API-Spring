@@ -11,8 +11,7 @@ public class UserDTOMapper {
         return new User(
             userRequestDTO.getName(),
             userRequestDTO.getEmail(),
-            userRequestDTO.getPassword(),
-            userRequestDTO.getUserRole()
+            userRequestDTO.getPassword()
         );
     }
 }

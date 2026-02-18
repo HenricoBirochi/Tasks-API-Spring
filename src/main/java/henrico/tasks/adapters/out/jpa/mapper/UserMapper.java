@@ -22,7 +22,7 @@ public class UserMapper {
                 userEntity.getPassword(),
                 userEntity.getCoins(),
                 userEntity.getUserRole(),
-                userEntity.getImage().getId()
+                ImageMapper.toImage(userEntity.getImage())
         );
     }
 
@@ -46,7 +46,7 @@ public class UserMapper {
                 .password(user.getPassword())
                 .coins(user.getCoins())
                 .userRole(user.getUserRole())
-                .image(em.getReference(ImageEntity.class, user.getImageId()))
+                .image(em.getReference(ImageEntity.class, user.getImage().getId()))
                 .build();
     }
 

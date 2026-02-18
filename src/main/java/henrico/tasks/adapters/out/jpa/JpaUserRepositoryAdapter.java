@@ -30,7 +30,7 @@ public class JpaUserRepositoryAdapter implements UserRepositoryOutputPort {
     @Override
     public User insert(User user) {
         UserEntity userEntity;
-        if(user.getImageId() == null) {
+        if(user.getImage() == null) {
             userEntity = userMapper.toUserEntityWithoutImageReference(user);
             var userSaved = jpaUserRepository.save(userEntity);
             return userMapper.toUserWithoutImageId(userSaved);

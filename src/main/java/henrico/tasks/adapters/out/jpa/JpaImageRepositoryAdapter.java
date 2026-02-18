@@ -3,14 +3,28 @@ package henrico.tasks.adapters.out.jpa;
 import java.util.List;
 import java.util.UUID;
 
+import henrico.tasks.adapters.out.jpa.entity.ImageEntity;
+import henrico.tasks.adapters.out.jpa.mapper.ImageMapper;
+import henrico.tasks.adapters.out.jpa.repository.JpaImageRepository;
 import henrico.tasks.application.core.domain.Image;
 import henrico.tasks.application.ports.out.repository.ImageRepositoryOutputPort;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class JpaImageRepositoryAdapter implements ImageRepositoryOutputPort {
+    private final JpaImageRepository jpaImageRepository;
+
+    public JpaImageRepositoryAdapter(
+            JpaImageRepository jpaImageRepository
+    ) {
+        this.jpaImageRepository = jpaImageRepository;
+    }
 
     @Override
     public Image insert(Image image) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        ImageEntity imageEntity = ImageMapper.toImageEntity(image);
+        ImageEntity newImageEntity = jpaImageRepository.save(imageEntity);
+        return ImageMapper.toImage(newImageEntity);
     }
 
     @Override

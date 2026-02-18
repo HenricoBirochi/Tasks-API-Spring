@@ -6,13 +6,19 @@ public class Image {
     private UUID id;
     private String imageName;
     private String imageExtension;
-    private String imagePath;
 
-    public Image(UUID id, String imageName, String imagePath, String imageExtension) {
+    public Image() {
+    }
+
+    public Image(String imageName, String imageExtension) {
+        this.imageName = imageName;
+        this.imageExtension = imageExtension;
+    }
+
+    public Image(UUID id, String imageName, String imageExtension) {
         this.id = id;
         this.imageName = imageName;
         this.imageExtension = imageExtension;
-        this.imagePath = imagePath;
     }
 
     public UUID getId() {
@@ -37,13 +43,5 @@ public class Image {
 
     public void setImageExtension(String imageExtension) {
         this.imageExtension = imageExtension;
-    }
-
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
     }
 }

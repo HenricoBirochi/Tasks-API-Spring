@@ -1,41 +1,37 @@
 package henrico.tasks.adapters.in.controller;
 
-import java.util.UUID;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import henrico.tasks.application.core.domain.User;
-import henrico.tasks.application.ports.in.CreateUserWithoutImageInputPort;
-import henrico.tasks.application.ports.in.FindUserByIdInputPort;
-
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
 import henrico.tasks.adapters.in.controller.dto.UserRequestDTO;
 import henrico.tasks.adapters.in.controller.mapper.UserDTOMapper;
-
-
+import henrico.tasks.application.core.domain.User;
+import henrico.tasks.application.ports.in.CreateUserWithImageInputPort;
+import henrico.tasks.application.ports.in.FindUserByIdInputPort;
+import jakarta.servlet.http.Part;
+import java.util.UUID;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("/user")
 @RestController
 public class UserController {
 
     private final FindUserByIdInputPort findUserByIdInputPort;
-    private final CreateUserWithoutImageInputPort createUserWithoutImageInputPort;
+    private final CreateUserWithImageInputPort createUserWithImageInputPort;
 
     private final UserDTOMapper userDTOMapper;
 
     public UserController(
         FindUserByIdInputPort findUserByIdInputPort,
-        CreateUserWithoutImageInputPort createUserWithoutImageInputPort,
+        CreateUserWithImageInputPort createUserWithImageInputPort,
         UserDTOMapper userDTOMapper
     ) {
         this.findUserByIdInputPort = findUserByIdInputPort;
-        this.createUserWithoutImageInputPort = createUserWithoutImageInputPort;
+        this.createUserWithImageInputPort = createUserWithImageInputPort;
         this.userDTOMapper = userDTOMapper;
     }
 
@@ -45,13 +41,21 @@ public class UserController {
         return ResponseEntity.status(200).body(user);
     }
 
-    @PostMapping("/post")
-    public ResponseEntity<User> postUser(@RequestBody UserRequestDTO userRequestDTO) {
+    @PostMapping(
+        value = "/post",
+        consumes = MediaType.MULTIPART_FORM_DATA_VALUE
+    )
+    public ResponseEntity<User> postUser(
+        @RequestPart("user") UserRequestDTO userRequestDTO,
+        @RequestPart("imageFile") Part imageFile
+    ) {
         var user = userDTOMapper.toUser(userRequestDTO);
-
-        var userCreated = createUserWithoutImageInputPort.createUser(user);
-
+        var userCreated = createUserWithImageInputPort.createUser(
+            user,
+            imageFile
+        );
+        if (userCreated.equals(null)) {
+        }
         return ResponseEntity.status(201).body(userCreated);
     }
-
 }

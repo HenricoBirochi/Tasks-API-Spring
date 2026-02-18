@@ -44,18 +44,13 @@ public class JpaTaskRepositoryAdapter implements TaskRepositoryOutputPort {
             Field[] fields = Task.class.getDeclaredFields();
             for(Field field : fields) {
                 field.setAccessible(true);
-
                 if(field.get(task) == null || field.get(task).equals("")) {
                     continue;
                 }
-
                 field.set(taskEntity, task);
             }
-
             jpaTaskRepository.save(taskEntity);
-
             Task newTask = taskMapper.toTask(taskEntity);
-
             return newTask;
         }
         catch (EntityNotFoundException exception) {

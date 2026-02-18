@@ -1,19 +1,22 @@
 package henrico.tasks.config;
 
+import henrico.tasks.adapters.out.jpa.JpaImageRepositoryAdapter;
+import henrico.tasks.adapters.out.jpa.JpaUserRepositoryAdapter;
+import henrico.tasks.application.core.usecase.CreateUserWithImageUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import henrico.tasks.adapters.out.jpa.JpaTaskRepositoryAdapter;
-import henrico.tasks.adapters.out.jpa.JpaUserRepositoryAdapter;
-import henrico.tasks.application.core.usecase.CreateUserWithoutImageUseCase;
-
 @Configuration
 public class CreateUserConfig {
+
     @Bean
-    public CreateUserWithoutImageUseCase createUserUseCase(
-        JpaTaskRepositoryAdapter jpaTaskRepositoryAdapter,
+    public CreateUserWithImageUseCase createUserUseCase(
+        JpaImageRepositoryAdapter jpaImageRepositoryAdapter,
         JpaUserRepositoryAdapter jpaUserRepositoryAdapter
     ) {
-        return new CreateUserWithoutImageUseCase(jpaTaskRepositoryAdapter, jpaUserRepositoryAdapter);
+        return new CreateUserWithImageUseCase(
+            jpaImageRepositoryAdapter,
+            jpaUserRepositoryAdapter
+        );
     }
 }
