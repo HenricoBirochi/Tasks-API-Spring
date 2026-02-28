@@ -6,6 +6,7 @@ import henrico.tasks.application.core.domain.enums.UserRole;
 
 public class User {
     private UUID id;
+    private String userName;
     private String name;
     private String email;
     private String password;
@@ -16,14 +17,16 @@ public class User {
     public User() {
     }
 
-    public User(String name, String email, String password) {
+    public User(String userName, String name, String email, String password) {
+        this.userName = userName;
         this.name = name;
         this.email = email;
         this.password = password;
     }
 
-    public User(UUID id, String name, String email, String password, Integer coins, UserRole userRole) {
+    public User(UUID id, String userName, String name, String email, String password, Integer coins, UserRole userRole) {
         this.id = id;
+        this.userName = userName;
         this.name = name;
         this.email = email;
         this.password = password;
@@ -31,8 +34,9 @@ public class User {
         this.userRole = userRole;
     }
 
-    public User(UUID id, String name, String email, String password, Integer coins, UserRole userRole, Image image) {
+    public User(UUID id, String userName, String name, String email, String password, Integer coins, UserRole userRole, Image image) {
         this.id = id;
+        this.userName = userName;
         this.name = name;
         this.email = email;
         this.password = password;
@@ -47,6 +51,14 @@ public class User {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getName() {

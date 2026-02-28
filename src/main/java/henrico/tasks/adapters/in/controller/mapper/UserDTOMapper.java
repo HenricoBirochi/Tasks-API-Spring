@@ -9,6 +9,7 @@ import henrico.tasks.application.core.domain.User;
 public class UserDTOMapper {
     public User toUser(UserRequestDTO userRequestDTO) {
         return new User(
+            userRequestDTO.getUserName(),
             userRequestDTO.getName(),
             userRequestDTO.getEmail(),
             userRequestDTO.getPassword()

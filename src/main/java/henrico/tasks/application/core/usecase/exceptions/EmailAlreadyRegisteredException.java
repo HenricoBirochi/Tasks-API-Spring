@@ -2,7 +2,19 @@ package henrico.tasks.application.core.usecase.exceptions;
 
 public class EmailAlreadyRegisteredException extends RuntimeException {
 
-    public EmailAlreadyRegisteredException(String message) {
+    private String wrongEmail;
+
+    public EmailAlreadyRegisteredException(String message, String wrongEmail) {
         super(message);
+        this.wrongEmail = wrongEmail;
     }
+
+    public String getWrongEmail() {
+        return wrongEmail;
+    }
+
+    public void setWrongEmail(String wrongEmail) {
+        this.wrongEmail = wrongEmail;
+    }
+
 }

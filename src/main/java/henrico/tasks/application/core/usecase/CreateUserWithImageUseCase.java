@@ -13,6 +13,7 @@ import henrico.tasks.application.core.usecase.exceptions.EmailAlreadyRegisteredE
 import henrico.tasks.application.core.usecase.exceptions.ImageContentTypeNotValidException;
 import henrico.tasks.application.core.usecase.exceptions.ImageProcessingException;
 import henrico.tasks.application.core.usecase.exceptions.PasswordNotValidException;
+import henrico.tasks.application.core.usecase.exceptions.UserNameAlreadyRegisteredException;
 import henrico.tasks.application.ports.in.CreateUserWithImageInputPort;
 import henrico.tasks.application.ports.out.repository.ImageRepositoryOutputPort;
 import henrico.tasks.application.ports.out.repository.UserRepositoryOutputPort;
@@ -39,16 +40,9 @@ public class CreateUserWithImageUseCase implements CreateUserWithImageInputPort 
     @Override
     public User createUser(User user, Part imageFile) {
         try {
-            if(!isUserPasswordValid(user.getPassword())) {
-                throw new PasswordNotValidException("The password must contains at least 12 characters!");
-            }
-            if(isEmailAlreadyRegistered(user.getEmail())) {
-                throw new EmailAlreadyRegisteredException("This email already has a account hear!");
-            }
-            String contentType = getImageContentType(imageFile);
-            if(contentType.equals("")) {
-                throw new ImageContentTypeNotValidException("The image must be PNG or JPG or JPEG!");
-            }
+            isUserPasswordValid(user.getPassword());
+            isEmailOrUserNameAlreadyRegistered(user.getEmail(), user.getUserName());
+            String contentType = verifyAndGetImageContentType(imageFile);
             var newUser = createImage(user, imageFile, contentType);
             return setFieldsAndCreateUser(newUser);
         } catch (IOException exception) {
@@ -79,17 +73,15 @@ public class CreateUserWithImageUseCase implements CreateUserWithImageInputPort 
     public void createImageInUploadFolder(Image imageDb, Part imageFile, String contentType) throws IOException {
         Path uploadDir = Path.of("./userImageUploads");
         Files.createDirectories(uploadDir);
-
         String finalFileName = imageDb.getId().toString().concat(contentType);
         Path savedPath = uploadDir.resolve(finalFileName);
-
         try(InputStream in = imageFile.getInputStream()) {
             Files.copy(in, savedPath);
         }
     }
 
     // Data validation methods
-    public String getImageContentType(Part imageFile) {
+    public String verifyAndGetImageContentType(Part imageFile) {
         String realMimeContentType = imageFile.getContentType();
         String realContentType = "";
         if(availableContentTypes.contains(realMimeContentType)) {
@@ -100,20 +92,27 @@ public class CreateUserWithImageUseCase implements CreateUserWithImageInputPort 
                 default -> throw new AssertionError();
             }
         }
+        if(realContentType.equals("")) {
+            throw new ImageContentTypeNotValidException("The image must be PNG, JPG or JPEG!", realMimeContentType);
+        }
         return realContentType;
     }
 
-    public boolean isUserPasswordValid(String password) {
-        return password.length() >= 12;
+    public void isUserPasswordValid(String password) {
+        if(password.length() < 12) {
+            throw new PasswordNotValidException("The password must contains at least 12 characters!", password);
+        }
     }
 
-    public boolean isEmailAlreadyRegistered(String email) {
+    public void isEmailOrUserNameAlreadyRegistered(String email, String userName) {
         var users = userRepositoryOutputPort.findAll();
-        for (User user : users) {
-            if (user.getEmail().equals(email)) {
-                return true;
+        for(User user : users) {
+            if(user.getEmail().equals(email)) {
+                throw new EmailAlreadyRegisteredException("This Email is already registered, try another email please!", email);
+            }
+            if(user.getUserName().equals(userName)) {
+                throw new UserNameAlreadyRegisteredException("This User Name is already registered, try another user name please!", userName);
             }
         }
-        return false;
     }
 }

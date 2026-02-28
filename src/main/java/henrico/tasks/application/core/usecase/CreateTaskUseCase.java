@@ -1,14 +1,15 @@
 package henrico.tasks.application.core.usecase;
 
+import java.time.LocalDateTime;
+import java.util.UUID;
+
 import henrico.tasks.application.core.domain.Task;
 import henrico.tasks.application.core.usecase.exceptions.DeadlineIsBeforeCurrentDateTimeException;
 import henrico.tasks.application.core.usecase.exceptions.TaskAlreadyExistsException;
-import henrico.tasks.application.core.usecase.exceptions.UserNotExistsException;
+import henrico.tasks.application.core.usecase.exceptions.UserNotFoundException;
 import henrico.tasks.application.ports.in.CreateTaskInputPort;
 import henrico.tasks.application.ports.out.repository.TaskRepositoryOutputPort;
 import henrico.tasks.application.ports.out.repository.UserRepositoryOutputPort;
-import java.time.LocalDateTime;
-import java.util.UUID;
 
 public class CreateTaskUseCase implements CreateTaskInputPort {
 
@@ -33,7 +34,7 @@ public class CreateTaskUseCase implements CreateTaskInputPort {
         } catch (
             TaskAlreadyExistsException
             | DeadlineIsBeforeCurrentDateTimeException
-            | UserNotExistsException exception
+            | UserNotFoundException exception
         ) {
             return new Task();
         }
@@ -41,9 +42,7 @@ public class CreateTaskUseCase implements CreateTaskInputPort {
 
     public void verifyIfDeadlineIsAfterNow(LocalDateTime deadline) {
         if (deadline.isBefore(LocalDateTime.now())) {
-            throw new DeadlineIsBeforeCurrentDateTimeException(
-                "The deadline must be after the current date and time!"
-            );
+            throw new DeadlineIsBeforeCurrentDateTimeException("The deadline must be after the current date and time!", deadline);
         }
     }
 
@@ -57,7 +56,7 @@ public class CreateTaskUseCase implements CreateTaskInputPort {
     public void verifyIfUserAlreadyExists(UUID userId) {
         var user = userRepositoryOutputPort.findById(userId);
         if (user == null) {
-            throw new UserNotExistsException("User doesn't exist!");
+            throw new UserNotFoundException("User doesn't exist!");
         }
     }
 }

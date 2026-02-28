@@ -17,6 +17,7 @@ public class UserMapper {
     public User toUser(UserEntity userEntity) {
         return new User(
                 userEntity.getId(),
+                userEntity.getUserName(),
                 userEntity.getName(),
                 userEntity.getEmail(),
                 userEntity.getPassword(),
@@ -29,6 +30,7 @@ public class UserMapper {
     public User toUserWithoutImageId(UserEntity userEntity) {
         return new User(
                 userEntity.getId(),
+                userEntity.getUserName(),
                 userEntity.getName(),
                 userEntity.getEmail(),
                 userEntity.getPassword(),
@@ -41,6 +43,7 @@ public class UserMapper {
         return UserEntity
                 .builder()
                 .id(user.getId())
+                .userName(user.getUserName())
                 .name(user.getName())
                 .email(user.getEmail())
                 .password(user.getPassword())
@@ -54,6 +57,7 @@ public class UserMapper {
         return UserEntity
                 .builder()
                 .id(user.getId())
+                .userName(user.getUserName())
                 .name(user.getName())
                 .email(user.getEmail())
                 .password(user.getPassword())
