@@ -4,9 +4,9 @@ import java.lang.reflect.Field;
 import java.util.List;
 import java.util.UUID;
 
-import henrico.tasks.adapters.out.jpa.entity.UserEntity;
 import org.springframework.stereotype.Repository;
 
+import henrico.tasks.adapters.out.jpa.entity.UserEntity;
 import henrico.tasks.adapters.out.jpa.mapper.UserMapper;
 import henrico.tasks.adapters.out.jpa.repository.JpaUserRepository;
 import henrico.tasks.application.core.domain.User;

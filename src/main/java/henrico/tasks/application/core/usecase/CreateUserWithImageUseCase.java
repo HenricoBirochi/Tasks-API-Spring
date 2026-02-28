@@ -83,19 +83,15 @@ public class CreateUserWithImageUseCase implements CreateUserWithImageInputPort 
     // Data validation methods
     public String verifyAndGetImageContentType(Part imageFile) {
         String realMimeContentType = imageFile.getContentType();
-        String realContentType = "";
-        if(availableContentTypes.contains(realMimeContentType)) {
-            switch (realMimeContentType) {
-                case "image/png" -> realContentType = ".png";
-                case "image/jpg" -> realContentType = ".jpg";
-                case "image/jpeg" -> realContentType = ".jpeg";
-                default -> throw new AssertionError();
-            }
-        }
-        if(realContentType.equals("")) {
+        if(!availableContentTypes.contains(realMimeContentType)) {
             throw new ImageContentTypeNotValidException("The image must be PNG, JPG or JPEG!", realMimeContentType);
         }
-        return realContentType;
+        return switch (realMimeContentType) {
+            case "image/png" -> ".png";
+            case "image/jpg" -> ".jpg";
+            case "image/jpeg" -> ".jpeg";
+            default -> throw new AssertionError();
+        };
     }
 
     public void isUserPasswordValid(String password) {
