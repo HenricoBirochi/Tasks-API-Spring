@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class CreateUserConfig {
+public class CreateUserWithImageConfig {
 
     @Bean
     public CreateUserWithImageUseCase createUserUseCase(

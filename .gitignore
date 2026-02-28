@@ -37,3 +37,6 @@ build/
 
 ### userImageUploads folder ###
 userImageUploads/
+
+### PostgreSQL DataBase ###
+database/
