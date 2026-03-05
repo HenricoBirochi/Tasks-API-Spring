@@ -43,8 +43,8 @@ public class CreateUserWithImageUseCase implements CreateUserWithImageInputPort 
             isUserPasswordValid(user.getPassword());
             isEmailOrUserNameAlreadyRegistered(user.getEmail(), user.getUserName());
             String contentType = verifyAndGetImageContentType(imageFile);
-            var newUser = createImage(user, imageFile, contentType);
-            return setFieldsAndCreateUser(newUser);
+            var newUserWithImage = createImage(user, imageFile, contentType);
+            return setFieldsAndCreateUser(newUserWithImage);
         } catch (IOException exception) {
             throw new ImageProcessingException("Error when trying to process the user image");
         }
@@ -71,8 +71,11 @@ public class CreateUserWithImageUseCase implements CreateUserWithImageInputPort 
     }
 
     public void createImageInUploadFolder(Image imageDb, Part imageFile, String contentType) throws IOException {
+        // Creates the image's folder
         Path uploadDir = Path.of("./userImageUploads");
         Files.createDirectories(uploadDir);
+
+        // Creates the image and save it in the folder
         String finalFileName = imageDb.getId().toString().concat(contentType);
         Path savedPath = uploadDir.resolve(finalFileName);
         try(InputStream in = imageFile.getInputStream()) {
