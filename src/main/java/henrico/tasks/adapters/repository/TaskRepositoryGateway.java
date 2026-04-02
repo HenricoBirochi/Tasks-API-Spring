@@ -1,9 +1,9 @@
 package henrico.tasks.adapters.repository;
 
-import henrico.tasks.core.domain.Task;
-
 import java.util.List;
 import java.util.UUID;
+
+import henrico.tasks.core.domain.Task;
 
 public interface TaskRepositoryGateway {
 

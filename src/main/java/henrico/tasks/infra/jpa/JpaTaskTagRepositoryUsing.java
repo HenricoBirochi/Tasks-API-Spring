@@ -6,7 +6,7 @@ import java.util.UUID;
 import henrico.tasks.core.domain.TaskTag;
 import henrico.tasks.adapters.repository.TaskTagRepositoryGateway;
 
-public class JpaTaskTagRepositoryImpl implements TaskTagRepositoryGateway {
+public class JpaTaskTagRepositoryUsing implements TaskTagRepositoryGateway {
 
     @Override
     public TaskTag insert(TaskTag taskTag) {

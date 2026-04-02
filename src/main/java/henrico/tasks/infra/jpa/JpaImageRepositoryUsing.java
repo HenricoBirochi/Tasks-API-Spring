@@ -3,18 +3,20 @@ package henrico.tasks.infra.jpa;
 import java.util.List;
 import java.util.UUID;
 
-import henrico.tasks.infra.jpa.entity.ImageEntity;
-import henrico.tasks.infra.jpa.mapper.ImageMapper;
-import henrico.tasks.core.domain.Image;
-import henrico.tasks.adapters.repository.ImageRepositoryGateway;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public class JpaImageRepositoryImpl implements ImageRepositoryGateway {
-    private final henrico.tasks.infra.jpa.repository.JpaImageRepository jpaImageRepository;
+import henrico.tasks.adapters.repository.ImageRepositoryGateway;
+import henrico.tasks.core.domain.Image;
+import henrico.tasks.infra.jpa.entity.ImageEntity;
+import henrico.tasks.infra.jpa.mapper.ImageMapper;
+import henrico.tasks.infra.jpa.repository.JpaImageRepository;
 
-    public JpaImageRepositoryImpl(
-            henrico.tasks.infra.jpa.repository.JpaImageRepository jpaImageRepository
+@Repository
+public class JpaImageRepositoryUsing implements ImageRepositoryGateway {
+    private final JpaImageRepository jpaImageRepository;
+
+    public JpaImageRepositoryUsing(
+            JpaImageRepository jpaImageRepository
     ) {
         this.jpaImageRepository = jpaImageRepository;
     }

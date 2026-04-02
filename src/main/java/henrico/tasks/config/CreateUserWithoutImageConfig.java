@@ -1,7 +1,7 @@
 package henrico.tasks.config;
 
 import henrico.tasks.application.services.CreateUserWithoutImageService;
-import henrico.tasks.infra.jpa.JpaUserRepositoryImpl;
+import henrico.tasks.infra.jpa.JpaUserRepositoryUsing;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Configuration;
 public class CreateUserWithoutImageConfig {
     @Bean
     public CreateUserWithoutImageService createUserWithoutImageService(
-            JpaUserRepositoryImpl jpaUserRepositoryImpl
+            JpaUserRepositoryUsing jpaUserRepositoryUsing
     ){
-        return new CreateUserWithoutImageService(jpaUserRepositoryImpl);
+        return new CreateUserWithoutImageService(jpaUserRepositoryUsing);
     }
 }

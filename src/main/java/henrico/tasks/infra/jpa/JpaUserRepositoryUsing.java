@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.util.List;
 import java.util.UUID;
 
+import henrico.tasks.infra.jpa.repository.JpaUserRepository;
 import org.springframework.stereotype.Repository;
 
 import henrico.tasks.infra.jpa.entity.UserEntity;
@@ -13,13 +14,13 @@ import henrico.tasks.adapters.repository.UserRepositoryGateway;
 import jakarta.persistence.EntityNotFoundException;
 
 @Repository
-public class JpaUserRepositoryImpl implements UserRepositoryGateway {
+public class JpaUserRepositoryUsing implements UserRepositoryGateway {
 
-    private final henrico.tasks.infra.jpa.repository.JpaUserRepository jpaUserRepository;
+    private final JpaUserRepository jpaUserRepository;
     private final UserMapper userMapper;
 
-    public JpaUserRepositoryImpl(
-        henrico.tasks.infra.jpa.repository.JpaUserRepository jpaUserRepository,
+    public JpaUserRepositoryUsing(
+        JpaUserRepository jpaUserRepository,
         UserMapper userMapper
     ) {
         this.jpaUserRepository = jpaUserRepository;

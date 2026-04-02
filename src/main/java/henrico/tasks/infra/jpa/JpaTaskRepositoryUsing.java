@@ -6,20 +6,21 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Repository;
 
+import henrico.tasks.adapters.repository.TaskRepositoryGateway;
+import henrico.tasks.core.domain.Task;
 import henrico.tasks.infra.jpa.entity.TaskEntity;
 import henrico.tasks.infra.jpa.mapper.TaskMapper;
-import henrico.tasks.core.domain.Task;
-import henrico.tasks.adapters.repository.TaskRepositoryGateway;
+import henrico.tasks.infra.jpa.repository.JpaTaskRepository;
 import jakarta.persistence.EntityNotFoundException;
 
 @Repository
-public class JpaTaskRepositoryImpl implements TaskRepositoryGateway {
+public class JpaTaskRepositoryUsing implements TaskRepositoryGateway {
 
-    private final henrico.tasks.infra.jpa.repository.JpaTaskRepository jpaTaskRepository;
+    private final JpaTaskRepository jpaTaskRepository;
     private final TaskMapper taskMapper;
 
-    public JpaTaskRepositoryImpl(
-            henrico.tasks.infra.jpa.repository.JpaTaskRepository jpaTaskRepository,
+    public JpaTaskRepositoryUsing(
+            JpaTaskRepository jpaTaskRepository,
             TaskMapper taskMapper
     ) {
         this.jpaTaskRepository = jpaTaskRepository;

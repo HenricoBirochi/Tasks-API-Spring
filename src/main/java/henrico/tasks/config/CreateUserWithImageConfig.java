@@ -1,22 +1,21 @@
 package henrico.tasks.config;
 
-import henrico.tasks.infra.jpa.JpaImageRepositoryImpl;
-import henrico.tasks.infra.jpa.JpaUserRepositoryImpl;
+import henrico.tasks.infra.jpa.JpaImageRepositoryUsing;
+import henrico.tasks.infra.jpa.JpaUserRepositoryUsing;
 import henrico.tasks.application.services.CreateUserWithImageService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class CreateUserWithImageConfig {
-
     @Bean
-    public CreateUserWithImageService createUserUseCase(
-        JpaImageRepositoryImpl jpaImageRepositoryImpl,
-        JpaUserRepositoryImpl jpaUserRepositoryImpl
+    public CreateUserWithImageService createUserWithImageService(
+        JpaImageRepositoryUsing jpaImageRepositoryUsing,
+        JpaUserRepositoryUsing jpaUserRepositoryUsing
     ) {
         return new CreateUserWithImageService(
-                jpaImageRepositoryImpl,
-                jpaUserRepositoryImpl
+                jpaImageRepositoryUsing,
+                jpaUserRepositoryUsing
         );
     }
 }
