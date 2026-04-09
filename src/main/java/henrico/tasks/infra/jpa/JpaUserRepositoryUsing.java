@@ -1,16 +1,15 @@
 package henrico.tasks.infra.jpa;
 
-import java.lang.reflect.Field;
 import java.util.List;
 import java.util.UUID;
 
-import henrico.tasks.infra.jpa.repository.JpaUserRepository;
 import org.springframework.stereotype.Repository;
 
+import henrico.tasks.adapters.repository.UserRepositoryGateway;
+import henrico.tasks.core.domain.User;
 import henrico.tasks.infra.jpa.entity.UserEntity;
 import henrico.tasks.infra.jpa.mapper.UserMapper;
-import henrico.tasks.core.domain.User;
-import henrico.tasks.adapters.repository.UserRepositoryGateway;
+import henrico.tasks.infra.jpa.repository.JpaUserRepository;
 import jakarta.persistence.EntityNotFoundException;
 
 @Repository
@@ -43,34 +42,13 @@ public class JpaUserRepositoryUsing implements UserRepositoryGateway {
 
     @Override
     public User update(User user) {
-        try {
-            var userEntity = jpaUserRepository
-                    .findById(user.getId())
-                    .orElseThrow(() -> new EntityNotFoundException("User not found"));
+        jpaUserRepository.findById(user.getId())
+                         .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
-            Field[] fields = User.class.getDeclaredFields();
-            for(Field field : fields) {
-                field.setAccessible(true);
+        UserEntity updatedUser = userMapper.toUserEntity(user);
+        UserEntity updatedUserIndDb = jpaUserRepository.save(updatedUser);
+        return userMapper.toUser(updatedUserIndDb);
 
-                if(field.get(user) == null || field.get(user).equals("")) {
-                    continue;
-                }
-
-                field.set(userEntity, user);
-            }
-
-            jpaUserRepository.save(userEntity);
-
-            var newUser = userMapper.toUser(userEntity);
-
-            return newUser;
-        }
-        catch (EntityNotFoundException exception) {
-            throw new RuntimeException("User not found");
-        }
-        catch (IllegalAccessException exception) {
-            throw new RuntimeException(exception.getMessage());
-        }
     }
 
     @Override
